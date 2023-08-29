@@ -3,8 +3,118 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Connotation, a social place</title>
     <link rel="stylesheet" href="dist/css/index.css" />
   </head>
-  <body></body>
+  <body>
+    <header class="bg-dark p-2">
+      <nav class="container d-flex flex-column justify-content-center">
+        <div class="row mx-auto">
+          <img
+            class="headerImg"
+            src="images/logo/logo_dark.png"
+            alt="connotation logo"
+          />
+        </div>
+        <div class="row mx-auto">
+          <h1>
+            <span
+              ><img
+                class="headerText"
+                src="images/Connotation.png"
+                alt="connotation text"
+            /></span>
+          </h1>
+        </div>
+      </nav>
+    </header>
+    <main
+      class="fullScreenContainer customMarginBottom"
+      style="
+        background-image: url(/images/cristofer-maximilian-uQDRDqpYJHI-unsplash_loging_bg.jpg);
+        background-repeat: no-repeat;
+      "
+    >
+      <div class="vh-100">
+        <div class="customContainer">
+          <form
+            action="/profile/index.html"
+            class="myForm rounded p-4 bg-light customMarginTop needs-validation"
+          >
+            <h2 class="text-center text-dark">Welcome</h2>
+            <div class="form-group my-3">
+              <label for="exampleInputEmail1">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+                required
+              />
+              <div class="invalid-feedback">TESTRING</div>
+              <small id="emailHelp" class="form-text text-muted"
+                >We'll never share your email with anyone else.</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                minlength="8"
+                required
+              />
+            </div>
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="rememberCheck1"
+              />
+              <label class="form-check-label" for="rememberCheck1"
+                >Remember me</label
+              >
+            </div>
+            <div class="d-flex justify-content-center gap-5">
+              <button
+                type="submit"
+                href="profile/index.html"
+                class="my-4 btn btn-success text-dark"
+              >
+                Login
+              </button>
+              <button type="submit" class="my-4 btn btn-success text-dark">
+                Register
+              </button>
+            </div>
+          </form>
+          <div class="container bg-light rounded p-4 mb-5">
+            <p>
+              The term "connotation" refers to the array of emotional, cultural,
+              and subjective associations that a word carries beyond its literal
+              definition.
+            </p>
+            <!-- <p>
+              Connotations can be positive, negative, or neutral, and they play
+              a crucial role in shaping the tone and impact of language.
+            </p>
+            <p>
+              These additional layers of meaning can significantly impact how a
+              word is interpreted and understood in various contexts.
+            </p> -->
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="container-fluid">
+      <div class="row bg-success">
+        <p class="text-center pt-3">
+          <strong>&copy Spookyrumble - All rights reserved</strong>
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>

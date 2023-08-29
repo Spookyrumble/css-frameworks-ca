@@ -1,7 +1,15 @@
-@import "maps";
+@use "customContainers";
+@use "customMargins";
+@use "header";
+@import "customVariables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
-body {
-  display: flex;
-  background-image: url(/images/cristofer-maximilian-uQDRDqpYJHI-unsplash_loging_bg.jpg);
-  background-repeat: no-repeat;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// BODY BACKGROUND FOR PROFILE AND FEED
+.bgOption {
+  background: linear-gradient(to bottom, $dark 40%, $secondary);
 }

@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Rammetto+One&family=Roboto+Flex:wght@300;400;700&display=swap");
+
+//Color Theme
+$primary: #b2a0d9;
+$secondary: #7e60bf;
+$light: #f1ecff;
+$dark: #2a2040;
+$info: #539da6;
+$success: #34bf8c;
+
+//Border Radius
+$border-radius: 25px;
+
+//Fonts
+// $heading-font-family: "Rammetto One", cursive;
+$font-family-base: "Roboto Flex", sans-serif;
+$secondary-font: "Rammetto One", cursive;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $secondary-font;
+  letter-spacing: 3px;
+}
+
+$thumbnail-border-radius: 100px;

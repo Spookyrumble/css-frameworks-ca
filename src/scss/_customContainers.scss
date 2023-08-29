@@ -1,0 +1,22 @@
+.fullScreenContainer {
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // margin-top: 5rem;
+}
+
+.customContainer {
+  max-width: 30rem;
+  margin: 1rem;
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+}
+
+.profileImg {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  display: inline-block;
+}
