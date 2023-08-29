@@ -3,80 +3,151 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Connotation | My page</title>
+    <title>Connotation Social Media</title>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="../dist/css/index.css" />
   </head>
-  <body class="bgOption vh-100">
-    <header class="bg-dark p-2 navbar">
-      <div class="d-flex w-100 justify-content-between m-2">
-        <div class="align-self-center">
-          <img
-            class="headerImg w-50"
-            src="../images/logo/logo_dark.png"
-            alt="connotation logo"
-          />
-        </div>
-        <div class="p-2 align-self-center">
-          <span
-            ><img
-              class="headerText w-100 justify-content-center"
-              src="../images/Connotation.png"
-              alt="connotation text"
-          /></span>
-        </div>
-        <div class="dropdown dropstart p-2 align-self-center">
-          <a role="button" class="btn dropdown-toggle" href="#"
-            ><img
-              class="headerText"
-              src="../images/burger.png"
-              alt="hamburgermenu"
-              id="dropdownMenuLink"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
+  <body>
+    <header>
+      <div class="bs-component mb-5">
+        <nav class="navbar navbar-expand-lg navbar bgOption">
+          <a class="navbar-brand text-light m-2" href="#"
+            ><img class="logoSizing" src="../images/logo/logo_dark.png" alt=""
           /></a>
-          <ul
-            class="dropdown-menu"
-            aria-labelledby="dropdownMenuClickableInside"
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarColor01"
+            aria-controls="navbarColor01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
-            <li>
-              <a class="dropdown-item active" href="#">My Page</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Feed</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Sign out</a>
-            </li>
-          </ul>
-        </div>
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-between m-2"
+            id="navbarColor01"
+          >
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#">Feed</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#">Sign out</a>
+              </li>
+            </ul>
+            <form class="form d-flex my-2 my-lg-0">
+              <input
+                class="form-control mr-sm-2"
+                type="text"
+                placeholder="Search"
+              />
+              <button class="btn btn-light m-2 my-sm-0" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </nav>
       </div>
     </header>
     <main>
-      <div class="container">
-        <div class="profile">
-          <img
-            style="overflow: hidden"
-            class="profileImg rounded-circle"
-            src="../images/profilePics/iheb-ab-OBufvGMaBaQ-unsplash_dustin.jpg"
-            alt="profile picture"
-          />
+      <h1 class="text-center m-sm-5">My profile</h1>
+      <div class="container bg-light rounded p-sm-5 shadow-lg">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h2 class="my-sm-2">Dustin Makebelieve</h2>
+          </div>
+          <div>
+            <button class="btn btn-primary p-sm-1 mx-1"> Follow</button>
+          </div>
         </div>
-        <div class="container text-center">
-          <h1 class="text-light">Thisisa Name</h1>
+        <div class="col-sm-12">
+          <div class="customProfilePicCont d-flex overflow-hidden">
+            <img src="../images/profilePics/iheb-ab-OBufvGMaBaQ-unsplash_dustin.jpg" alt="profile picture">
+          </div>
+          <p class="p-sm-2">A passionate explorer, blending curiosity with creativity. An avid learner, traveler, and music enthusiast, always seeking the next adventure and tune to groove to</p>
         </div>
-        <div class="container">
-          <div class="row border-top border-bottom border-secondary text-light">
-            TESTING
+        <div class="row text-center border-top border-secondary p-1">
+          <div class="col-4">
+            <p>Posts</p>
+            <p>42</p>
+          </div>
+          <div class="col-4"><p>
+            Following
+          </p>
+          <p>282</p>
+        </div>
+          <div class="col-4">
+            <p>
+              Followers
+            </p>
+            <p>
+              91
+            </p>
+          </div>
+        </div>
+      </div>
+      <h3 class="text-center my-lg-4 p-1">Recent posts</h3>
+      <div class="container-sm">
+        <div class="row">
+          <div class="col-8 col-sm-6 col-md-4 col-lg-3 mx-auto">
+            <div class="card">
+              <div class="customCardContSize">
+                <img src="../images/joseph-gonzalez-fdlZBWIP0aM-unsplash_eggs.jpg" class="card-img-top" alt="...">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-8 col-sm-6 col-md-4 col-lg-3 mx-auto">
+            <div class="card">
+              <div class="customCardContSize">
+                <img src="../images/joanna-kosinska-1_CMoFsPfso-unsplash_pencils.jpg" class="card-img-top" alt="...">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-8 col-sm-6 col-md-4 col-lg-3 mx-auto">
+            <div class="card">
+              <div class="customCardContSize">
+                <img src="../images/joseph-gonzalez-fdlZBWIP0aM-unsplash_eggs.jpg" class="card-img-top" alt="...">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-8 col-sm-6 col-md-4 col-lg-3 mx-auto">
+            <div class="card">
+              <div class="customCardContSize">
+                <img src="../images/joseph-gonzalez-fdlZBWIP0aM-unsplash_eggs.jpg" class="card-img-top" alt="...">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </main>
-    <footer class="container-fluid">
-      <div class="row bg-success">
-        <p class="text-center pt-3">
-          <strong>&copy Spookyrumble - All rights reserved</strong>
-        </p>
-      </div>
-    </footer>
-  </body>
+    <footer></footer>
+<body>
+  
+</body>
 </html>

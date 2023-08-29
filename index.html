@@ -3,118 +3,124 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Connotation, a social place</title>
+    <title>Connotation Social Media</title>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="dist/css/index.css" />
   </head>
   <body>
-    <header class="bg-dark p-2">
-      <nav class="container d-flex flex-column justify-content-center">
-        <div class="row mx-auto">
-          <img
-            class="headerImg"
-            src="images/logo/logo_dark.png"
-            alt="connotation logo"
-          />
-        </div>
-        <div class="row mx-auto">
-          <h1>
-            <span
-              ><img
-                class="headerText"
-                src="images/Connotation.png"
-                alt="connotation text"
-            /></span>
-          </h1>
-        </div>
-      </nav>
-    </header>
-    <main
-      class="fullScreenContainer customMarginBottom"
-      style="
-        background-image: url(/images/cristofer-maximilian-uQDRDqpYJHI-unsplash_loging_bg.jpg);
-        background-repeat: no-repeat;
-      "
-    >
-      <div class="vh-100">
-        <div class="customContainer">
-          <form
-            action="/profile/index.html"
-            class="myForm rounded p-4 bg-light customMarginTop needs-validation"
+    <header>
+      <div class="bs-component mb-5">
+        <nav class="navbar navbar-expand-lg navbar bgOption">
+          <a class="navbar-brand text-light m-2" href="#"
+            ><img class="logoSizing" src="images/logo/logo_dark.png" alt=""
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarColor01"
+            aria-controls="navbarColor01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
-            <h2 class="text-center text-dark">Welcome</h2>
-            <div class="form-group my-3">
-              <label for="exampleInputEmail1">Email address</label>
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-between m-2"
+            id="navbarColor01"
+          >
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#">Feed</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="#">Sign out</a>
+              </li>
+            </ul>
+            <form class="form d-flex my-2 my-lg-0">
+              <input
+                class="form-control mr-sm-2"
+                type="text"
+                placeholder="Search"
+              />
+              <button class="btn btn-light m-2 my-sm-0" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="container-sm-0">
+      <div>
+        <h1 class="text-center">Welcome to Connotation</h1>
+        <div class="row justify-content-center m-auto w-50">
+          <p class="text-center">
+            The term "connotation" refers to the array of emotional, cultural,
+            and subjective associations that a word carries beyond its literal
+            definition.
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center my-5">
+        <div class="col-8 bg-light p-3 shadow-lg">
+          <form class="" action="/profile/index.html">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
               <input
                 type="email"
                 class="form-control"
-                id="exampleInputEmail1"
+                id="email"
                 aria-describedby="emailHelp"
-                placeholder="Enter email"
                 required
               />
-              <div class="invalid-feedback">TESTRING</div>
-              <small id="emailHelp" class="form-text text-muted"
-                >We'll never share your email with anyone else.</small
-              >
+              <div id="emailHelp" class="form-text">
+                We'll never share your email with anyone else.
+              </div>
             </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
               <input
                 type="password"
                 class="form-control"
-                id="exampleInputPassword1"
-                placeholder="Password"
-                minlength="8"
+                id="password"
                 required
+                minlength="8"
               />
+              <div id="emailHelp" class="form-text">Minimum length 8</div>
             </div>
-            <div class="form-check">
+            <div class="mb-3 form-check">
               <input
                 type="checkbox"
                 class="form-check-input"
-                id="rememberCheck1"
+                id="rememberCheckBox"
               />
-              <label class="form-check-label" for="rememberCheck1"
+              <label class="form-check-label" for="rememberCheckBox"
                 >Remember me</label
               >
             </div>
-            <div class="d-flex justify-content-center gap-5">
-              <button
-                type="submit"
-                href="profile/index.html"
-                class="my-4 btn btn-success text-dark"
-              >
-                Login
-              </button>
-              <button type="submit" class="my-4 btn btn-success text-dark">
+            <div class="d-flex justify-content-between mx-sm-5">
+              <button type="submit" class="btn btn-primary px-4">Login</button>
+              <button type="submit" class="btn btn-primary" disabled>
                 Register
               </button>
             </div>
           </form>
-          <div class="container bg-light rounded p-4 mb-5">
-            <p>
-              The term "connotation" refers to the array of emotional, cultural,
-              and subjective associations that a word carries beyond its literal
-              definition.
-            </p>
-            <!-- <p>
-              Connotations can be positive, negative, or neutral, and they play
-              a crucial role in shaping the tone and impact of language.
-            </p>
-            <p>
-              These additional layers of meaning can significantly impact how a
-              word is interpreted and understood in various contexts.
-            </p> -->
-          </div>
         </div>
       </div>
     </main>
-    <footer class="container-fluid">
-      <div class="row bg-success">
-        <p class="text-center pt-3">
-          <strong>&copy Spookyrumble - All rights reserved</strong>
-        </p>
-      </div>
+    <footer>
+      <p class="text-dark text-center">
+        &copy Spookyrumble - All rights reserved
+      </p>
     </footer>
   </body>
 </html>
