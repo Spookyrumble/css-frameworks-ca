@@ -1,5 +1,4 @@
 @use "customContainers";
-@use "customMargins";
 @import "customVariables";
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
@@ -16,17 +15,4 @@
 .logoSizing {
   width: 60px;
   height: auto;
-}
-
-.customProfilePicCont {
-  width: 120px;
-  height: 120px;
-  border-radius: 100px;
-  overflow: hidden;
-}
-
-.customCardContSize {
-  width: 215px;
-  height: 215px;
-  overflow: hidden;
 }

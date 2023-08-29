@@ -5,8 +5,7 @@
   overflow: hidden;
 }
 
-.customCardContSize {
-  width: 215px;
-  height: 215px;
-  overflow: hidden;
+.customCardImgSize {
+  height: 250px;
+  object-fit: cover;
 }
