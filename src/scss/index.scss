@@ -1,6 +1,5 @@
 @use "customContainers";
 @import "customVariables";
-
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 * {
@@ -9,7 +8,7 @@
 }
 
 // BODY BACKGROUND FOR PROFILE AND FEED
-.bgOption {
+.bgGradient {
   background: linear-gradient(to right, $dark 40%, $secondary);
 }
 

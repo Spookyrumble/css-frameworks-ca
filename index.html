@@ -3,28 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="School project, social media page" />
     <title>Connotation Social Media</title>
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"
-    ></script>
     <link rel="stylesheet" href="dist/css/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
     <header>
       <div class="bs-component mb-5">
-        <nav class="navbar navbar-expand-lg navbar bgOption">
-          <a class="navbar-brand text-light m-2" href="#"
-            ><img class="logoSizing" src="images/logo/logo_dark.png" alt=""
+        <nav class="navbar navbar-expand-lg navbar bgGradient">
+          <a class="navbar-brand text-light m-2" href="/index.html"
+            ><img
+              class="logoSizing"
+              src="images/logo/logo_dark.png"
+              alt="connotation logo"
           /></a>
           <button
-            class="navbar-toggler"
+            class="navbar-toggler collapsed"
             type="button"
-            data-toggle="collapse"
-            data-target="#navbarColor01"
-            aria-controls="navbarColor01"
+            data-bs-toggle="collapse"
+            data-bs-target="#burgerMenu"
+            aria-controls="burgerMenu"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
@@ -32,11 +31,11 @@
           </button>
           <div
             class="collapse navbar-collapse justify-content-between m-2"
-            id="navbarColor01"
+            id="burgerMenu"
           >
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav text-center mr-auto">
               <li class="nav-item">
-                <a class="nav-link text-light" href="#">Profile</a>
+                <a class="nav-link text-light" href="/index.html">Profile</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-light" href="/feed/index.html">Feed</a>

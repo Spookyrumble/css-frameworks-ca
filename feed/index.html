@@ -3,30 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="School project, social media page" />
     <title>Connotation Feed</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
     <link rel="stylesheet" href="../dist/css/index.css" />
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
     <header>
       <div class="bs-component mb-5">
-        <nav class="navbar navbar-expand-lg navbar bgOption">
+        <nav class="navbar navbar-expand-lg bgGradient">
           <a class="navbar-brand text-light m-2" href="../index.html"
-            ><img class="logoSizing" src="../images/logo/logo_dark.png" alt=""
+            ><img
+              class="logoSizing"
+              src="../images/logo/logo_dark.png"
+              alt="connotation logo"
           /></a>
           <button
-            class="navbar-toggler"
+            class="navbar-toggler collapsed"
             type="button"
-            data-toggle="collapse"
-            data-target="#navbarColor01"
-            aria-controls="navbarColor01"
+            data-bs-toggle="collapse"
+            data-bs-target="#burgerMenu"
+            aria-controls="burgerMenu"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
@@ -34,9 +35,9 @@
           </button>
           <div
             class="collapse navbar-collapse justify-content-between m-2"
-            id="navbarColor01"
+            id="burgerMenu"
           >
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav text-center mr-auto">
               <li class="nav-item">
                 <a class="nav-link text-light" href="/profile/index.html"
                   >Profile</a
@@ -46,7 +47,7 @@
                 <a class="nav-link text-light" href="/feed/index.html">Feed</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="#">Sign out</a>
+                <a class="nav-link text-light" href="/index.html">Sign out</a>
               </li>
             </ul>
             <form class="form d-flex my-2 my-lg-0">
@@ -116,7 +117,7 @@
                 <img
                   class="customThumbnail"
                   src="/images/profilePics/lesly-juarez-RukI4qZGlQs-unsplash_alex.jpg"
-                  alt=""
+                  alt="alex's profile picture"
                 />
                 <p class="p-2">Some post they made about something</p>
               </div></a
@@ -126,7 +127,7 @@
                 <img
                   class="customThumbnail"
                   src="/images/profilePics/ben-o-bro-C5XyLljkMrY-unsplash_fred.jpg"
-                  alt=""
+                  alt="fred's profile picture"
                 />
                 <p class="p-2">Some post they made about something</p>
               </div></a
@@ -136,7 +137,7 @@
                 <img
                   class="customThumbnail"
                   src="/images/profilePics/michael-dam-mEZ3PoFGs_k-unsplash_may.jpg"
-                  alt=""
+                  alt="may's profile picture"
                 />
                 <p class="p-2">Some post they made about something</p>
               </div></a
@@ -169,7 +170,7 @@
                   <img
                     class="customThumbnail"
                     src="/images/profilePics/reza-biazar-eSjmZW97cH8-unsplash_john.jpg"
-                    alt=""
+                    alt="john's profile picture"
                   />
                   <p class="mx-2 text-dark">
                     John Johnson <br />
@@ -196,7 +197,7 @@
                   <img
                     class="customThumbnail"
                     src="/images/profilePics/ben-o-bro-C5XyLljkMrY-unsplash_fred.jpg"
-                    alt=""
+                    alt="fred's profile picture"
                   />
                   <p class="mx-2 text-dark">
                     Fred Freeman<br />
@@ -223,7 +224,7 @@
                   <img
                     class="customThumbnail"
                     src="/images/profilePics/michael-dam-mEZ3PoFGs_k-unsplash_may.jpg"
-                    alt=""
+                    alt="may's profile picture"
                   />
                   <p class="mx-2 text-dark">
                     May Alexander<br />
