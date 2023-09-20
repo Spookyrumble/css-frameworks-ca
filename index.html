@@ -72,7 +72,7 @@
       </div>
       <div class="row justify-content-center my-5">
         <div class="col-8 bg-light p-3 shadow">
-          <form action="/profile/index.html">
+          <form id="loginForm">
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
               <input
@@ -82,9 +82,7 @@
                 aria-describedby="emailHelp"
                 required
               />
-              <div id="emailHelp" class="form-text">
-                We'll never share your email with anyone else.
-              </div>
+              <div id="emailHelp" class="form-text">Noroff email required.</div>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
@@ -101,15 +99,32 @@
               <input
                 type="checkbox"
                 class="form-check-input"
-                id="rememberCheckBox"
+                id="newUserCheckBox"
               />
-              <label class="form-check-label" for="rememberCheckBox"
-                >Remember me</label
+              <label class="form-check-label" for="newUserCheckBox"
+                >New user</label
               >
             </div>
+            <div id="newUserInput" class="mb-3 d-none">
+              <label for="name" class="form-label">Full Name</label>
+              <input
+                type="name"
+                class="form-control"
+                id="fullName"
+                minlength="4"
+              />
+              <div id="emailHelp" class="form-text">Minimum length 4</div>
+            </div>
             <div class="d-flex justify-content-between mx-sm-5">
-              <button type="submit" class="btn btn-primary px-4">Login</button>
-              <button type="submit" class="btn btn-primary" disabled>
+              <button id="loginBtn" type="submit" class="btn btn-primary px-4">
+                Login
+              </button>
+              <button
+                id="registerBtn"
+                type="submit"
+                class="btn btn-primary"
+                disabled
+              >
                 Register
               </button>
             </div>
