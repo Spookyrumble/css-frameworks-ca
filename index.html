@@ -81,6 +81,7 @@
                 id="email"
                 aria-describedby="emailHelp"
                 required
+                autocomplete
               />
               <div id="emailHelp" class="form-text">Noroff email required.</div>
             </div>
@@ -106,7 +107,7 @@
               >
             </div>
             <div id="newUserInput" class="mb-3 d-none">
-              <label for="name" class="form-label">Full Name</label>
+              <label for="fullName" class="form-label">Full Name</label>
               <input
                 type="name"
                 class="form-control"
@@ -118,14 +119,6 @@
             <div class="d-flex justify-content-between mx-sm-5">
               <button id="loginBtn" type="submit" class="btn btn-primary px-4">
                 Login
-              </button>
-              <button
-                id="registerBtn"
-                type="submit"
-                class="btn btn-primary"
-                disabled
-              >
-                Register
               </button>
             </div>
           </form>

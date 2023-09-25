@@ -1,44 +1,30 @@
-export const API_BASE_URL = "https://api.noroff.dev/api/v1/social/auth/";
-const registerString = "register";
-const loginString = "login";
+import { checkboxValidation } from "./utils.js";
+export const API_BASE_URL = "https://api.noroff.dev/api/v1/social/";
+const authString = "auth/";
+const registerString = "register/";
+const loginString = "login/";
 
-// ADDS THE FULL NAME INPUT WHEN NEW USER CHECKBOX IS CHECKED AND ENABLES THE REGISTER BUTTON
-const newUserToggle = document.getElementById("newUserCheckBox");
-const newUserBtn = document.getElementById("registerBtn");
-const newUserInput = document.getElementById("newUserInput");
-
-newUserToggle.addEventListener("change", function () {
-  if (newUserToggle.checked) {
-    newUserInput.classList.remove("d-none"),
-      newUserBtn.removeAttribute("disabled");
-  } else if (!newUserToggle.checked) {
-    newUserInput.classList.add("d-none");
-    newUserBtn.disabled = true;
-  }
-});
-
-// REGISTER USER. GRABS THE INPUT DATA, CREATES THE USER OBJECT AND POSTS IT TO CREATE NEW USER.
 const form = document.getElementById("loginForm");
 const nameInput = document.getElementById("fullName");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 
 /**
- * Creates a new user object and posts it to the API
+ * Creates a new user object and posts it to the API.
+ * removes all whitespace from the name input
  */
 function createNewUser() {
-  const userName = nameInput.value;
+  const userName = nameInput.value.replace(/\s+/g, "");
   const userEmail = emailInput.value;
   const userPassword = passwordInput.value;
 
   const userObject = {
-    name: userName,
+    name: userName.toLowerCase(),
     email: userEmail,
     password: userPassword,
   };
-  console.log(userObject);
 
-  fetch(API_BASE_URL + registerString, {
+  fetch(API_BASE_URL + authString + registerString, {
     method: "POST",
     body: JSON.stringify(userObject),
     headers: {
@@ -53,8 +39,8 @@ function createNewUser() {
 }
 
 /**
- * Grab user data and store it in an object
- * @returns userObject
+ * creates a user object with the email and password from the input fields
+ * @returns user object with email and password
  */
 function grabsUserData() {
   const userEmail = emailInput.value;
@@ -85,31 +71,49 @@ async function loginUser(url, data) {
     };
     const response = await fetch(url, postData);
     console.log(response);
-    const json = await response.json();
-    const accessToken = json.accessToken;
-    localStorage.setItem("accessToken", accessToken);
-    console.log(json);
-    return json;
+    if (response.ok) {
+      const json = await response.json();
+      const accessToken = json.accessToken;
+      localStorage.setItem("accessToken", accessToken);
+      console.log(json);
+      return { success: true, data: json };
+    } else {
+      console.error("Login failed:", response.status);
+      return { success: false };
+    }
   } catch (error) {
     console.log("There was an error authenticating the user", error);
   }
 }
 
-// Listen for submit event on the form and call the registerUser function or loginUser function
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (newUserToggle.checked) {
-    createNewUser();
-    console.log("Registration successful");
-  } else {
-    const user = grabsUserData();
-    loginUser(API_BASE_URL + loginString, user);
-    console.log("Logging in user", "Token stored in local storage");
-    if (localStorage.getItem("accessToken")) {
-      window.location.href = "/profile";
+checkboxValidation();
+
+/**
+ * Listens for submit event on the form and calls the createNewUser function or loginUser function
+ */
+function formListener() {
+  const newUserToggle = document.getElementById("newUserCheckBox");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (newUserToggle.checked) {
+      createNewUser();
     } else {
-      console.log("user does not exist or credentials are wrong");
-      alert("user does not exist or credentials are wrong");
+      const user = grabsUserData();
+      console.log(user);
+      const result = await loginUser(
+        API_BASE_URL + authString + loginString,
+        user
+      );
+      console.log(result);
+
+      if (result.success && localStorage.getItem("accessToken")) {
+        window.location.href = `/profile/index.html?id=${result.data.name}`;
+      } else {
+        console.log("user does not exist or credentials are wrong");
+        alert("user does not exist or credentials are wrong");
+      }
     }
-  }
-});
+  });
+}
+formListener();
