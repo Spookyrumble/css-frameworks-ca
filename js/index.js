@@ -74,7 +74,9 @@ async function loginUser(url, data) {
     if (response.ok) {
       const json = await response.json();
       const accessToken = json.accessToken;
+      const userId = json.name;
       localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("userId", userId);
       console.log(json);
       return { success: true, data: json };
     } else {

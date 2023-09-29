@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="../dist/css/index.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="../js/feed.js" type="module"></script>
   </head>
   <body>
     <header>
@@ -152,7 +153,7 @@
               </div>
             </form>
           </div>
-          <div class="col-lg-12 shadow p-2">
+          <div id="feedContainer" class="col-lg-12 shadow p-2">
             <h4 class="text-center">Feed</h4>
             <div>
               <div class="form-group text-end my-5">
@@ -164,8 +165,8 @@
                 </select>
               </div>
             </div>
-            <div class="row mb-5 border-bottom p-2">
-              <div class="d-flex w-100 justify-content-between">
+            <!-- <div id="feedBox" class="row mb-5 border-bottom p-2">
+              <div id="nameContainer" class="d-flex w-100 justify-content-between">
                 <div class="d-flex">
                   <img
                     class="customThumbnail"
@@ -183,13 +184,17 @@
                   >
                 </div>
               </div>
-              <div>
+              <div id="titleBox">
+                <h5 class="mt-2">A feed title</h5>
+              </div>
+              <div id="bodyBox">
                 <p>
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui
                   iste sapiente expedita rerum temporibus aperiam tenetur,
                   adipisci tempore sunt voluptas.
                 </p>
               </div>
+              <div id="mediaBox"></div>
             </div>
             <div class="row mb-5 border-bottom p-2">
               <div class="d-flex w-100 justify-content-between">
@@ -278,7 +283,7 @@
                   adipisci tempore sunt voluptas.
                 </p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
