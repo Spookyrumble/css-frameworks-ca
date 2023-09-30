@@ -1,1 +1,18 @@
+@use "customContainers";
+@import "customVariables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// BODY BACKGROUND FOR PROFILE AND FEED
+.bgGradient {
+  background: linear-gradient(to right, $dark 40%, $secondary);
+}
+
+.logoSizing {
+  width: 60px;
+  height: auto;
+}

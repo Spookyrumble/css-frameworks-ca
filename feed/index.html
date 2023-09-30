@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="School project, social media page" />
+    <title>Connotation Feed</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../dist/css/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="bs-component mb-5">
+        <nav class="navbar navbar-expand-lg bgGradient">
+          <a class="navbar-brand text-light m-2" href="../index.html"
+            ><img
+              class="logoSizing"
+              src="../images/logo/logo_dark.png"
+              alt="connotation logo"
+          /></a>
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#burgerMenu"
+            aria-controls="burgerMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-between m-2"
+            id="burgerMenu"
+          >
+            <ul class="navbar-nav text-center mr-auto">
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/profile/index.html"
+                  >Profile</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/feed/index.html">Feed</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="/index.html">Sign out</a>
+              </li>
+            </ul>
+            <form class="form d-flex my-2 my-lg-0">
+              <input
+                class="form-control mr-sm-2"
+                type="text"
+                placeholder="Search"
+              />
+              <button class="btn btn-light m-2 my-sm-0" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <h1 class="text-center">Connotation</h1>
+      <div class="container-xl p-5">
+        <div class="row">
+          <div class="col-lg-4 mb-5 shadow p-2">
+            <h2 class="visually-hidden">profile</h2>
+            <div class="d-flex">
+              <div class="d-flex mx-auto overflow-hidden">
+                <img
+                  class="img-fluid"
+                  src="../images/profilePics/iheb-ab-OBufvGMaBaQ-unsplash_dustin.jpg"
+                  alt="profile picture"
+                />
+              </div>
+            </div>
+            <a class="text-secondary" href="#"
+              ><small>Change photo</small><i class="bi bi-image ms-2"></i
+            ></a>
+            <h3 class="text-sm align-self-center my-4">Dustin Makebelieve</h3>
+            <div>
+              <p>
+                A passionate explorer, blending curiosity with creativity. An
+                avid learner, traveler, and music enthusiast, always seeking the
+                next adventure and tune to groove to.
+              </p>
+            </div>
+            <div class="container">
+              <div class="d-flex justify-content-center">
+                <table class="p-2">
+                  <thead class="text-center">
+                    <th class="px-3">Posts</th>
+                    <th class="px-3">Following</th>
+                    <th class="px-3">Followers</th>
+                  </thead>
+                  <tbody class="text-center">
+                    <td class="px-3">32</td>
+                    <td class="px-3">282</td>
+                    <td class="px-3">Mom</td>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-secondary mt-4">Add Friend</button>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-5 shadow p-2">
+            <h4>Friends</h4>
+            <a href="#"
+              ><div class="col-4 p-1 d-flex w-100">
+                <img
+                  class="customThumbnail"
+                  src="/images/profilePics/lesly-juarez-RukI4qZGlQs-unsplash_alex.jpg"
+                  alt="alex's profile picture"
+                />
+                <p class="p-2">Some post they made about something</p>
+              </div></a
+            >
+            <a href="#"
+              ><div class="col-4 p-1 d-flex w-100">
+                <img
+                  class="customThumbnail"
+                  src="/images/profilePics/ben-o-bro-C5XyLljkMrY-unsplash_fred.jpg"
+                  alt="fred's profile picture"
+                />
+                <p class="p-2">Some post they made about something</p>
+              </div></a
+            >
+            <a href="#"
+              ><div class="col-4 p-1 d-flex w-100">
+                <img
+                  class="customThumbnail"
+                  src="/images/profilePics/michael-dam-mEZ3PoFGs_k-unsplash_may.jpg"
+                  alt="may's profile picture"
+                />
+                <p class="p-2">Some post they made about something</p>
+              </div></a
+            >
+          </div>
+          <div class="col-lg-4 shadow mb-5 p-2">
+            <form>
+              <h4 class="text-center p-2">Create post</h4>
+              <textarea class="form-control" id="textarea" rows="3"></textarea>
+              <div class="d-flex justify-content-end mt-2">
+                <button class="btn btn-dark px-4 text-light">Post</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-12 shadow p-2">
+            <h4 class="text-center">Feed</h4>
+            <div>
+              <div class="form-group text-end my-5">
+                <label for="sortBy"></label>
+                <select class="form-control-sm" id="sortBy">
+                  <option>Newest</option>
+                  <option>Oldest</option>
+                  <option>Friends</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-5 border-bottom p-2">
+              <div class="d-flex w-100 justify-content-between">
+                <div class="d-flex">
+                  <img
+                    class="customThumbnail"
+                    src="/images/profilePics/reza-biazar-eSjmZW97cH8-unsplash_john.jpg"
+                    alt="john's profile picture"
+                  />
+                  <p class="mx-2 text-dark">
+                    John Johnson <br />
+                    <span class="text-primary"><small>1 hour ago</small></span>
+                  </p>
+                </div>
+                <div>
+                  <a href="#"
+                    ><small><span>Follow</span></small></a
+                  >
+                </div>
+              </div>
+              <div>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui
+                  iste sapiente expedita rerum temporibus aperiam tenetur,
+                  adipisci tempore sunt voluptas.
+                </p>
+              </div>
+            </div>
+            <div class="row mb-5 border-bottom p-2">
+              <div class="d-flex w-100 justify-content-between">
+                <div class="d-flex">
+                  <img
+                    class="customThumbnail"
+                    src="/images/profilePics/ben-o-bro-C5XyLljkMrY-unsplash_fred.jpg"
+                    alt="fred's profile picture"
+                  />
+                  <p class="mx-2 text-dark">
+                    Fred Freeman<br />
+                    <span class="text-primary"><small>1 hour ago</small></span>
+                  </p>
+                </div>
+                <div>
+                  <a href="#"
+                    ><small><span>Unfollow</span></small></a
+                  >
+                </div>
+              </div>
+              <div>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui
+                  iste sapiente expedita rerum temporibus aperiam tenetur,
+                  adipisci tempore sunt voluptas.
+                </p>
+              </div>
+            </div>
+            <div class="row mb-5 border-bottom p-2">
+              <div class="d-flex w-100 justify-content-between">
+                <div class="d-flex">
+                  <img
+                    class="customThumbnail"
+                    src="/images/profilePics/michael-dam-mEZ3PoFGs_k-unsplash_may.jpg"
+                    alt="may's profile picture"
+                  />
+                  <p class="mx-2 text-dark">
+                    May Alexander<br />
+                    <span class="text-primary"><small>3 hours ago</small></span>
+                  </p>
+                </div>
+                <div>
+                  <a href="#"
+                    ><small><span>Unfollow</span></small></a
+                  >
+                </div>
+              </div>
+              <div>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui
+                  iste sapiente expedita rerum temporibus aperiam tenetur,
+                  adipisci tempore sunt voluptas.
+                </p>
+              </div>
+              <div>
+                <img
+                  class="img-fluid"
+                  src="/images/leonard-cotte-R5scocnOOdM-unsplash_paris.jpg"
+                  alt="street in paris"
+                />
+              </div>
+            </div>
+            <div class="row mb-5 border-bottom p-2">
+              <div class="d-flex w-100 justify-content-between">
+                <div class="d-flex">
+                  <img
+                    class="customThumbnail"
+                    src="/images/profilePics/nora-hutton-tCJ44OIqceU-unsplash_alice.jpg"
+                    alt="profile picture of alice"
+                  />
+                  <p class="mx-2 text-dark">
+                    Alice Hansson<br />
+                    <span class="text-primary"><small>4 hours ago</small></span>
+                  </p>
+                </div>
+                <div>
+                  <a href="#"
+                    ><small><span>Follow</span></small></a
+                  >
+                </div>
+              </div>
+              <div>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui
+                  iste sapiente expedita rerum temporibus aperiam tenetur,
+                  adipisci tempore sunt voluptas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p class="text-dark text-center">
+        &copy Spookyrumble - All rights reserved
+      </p>
+    </footer>
+  </body>
+</html>
