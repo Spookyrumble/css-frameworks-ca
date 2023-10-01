@@ -9,6 +9,16 @@ const nameInput = document.getElementById("fullName");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 
+const profileLink = document.getElementById("profileNav");
+profileLink.addEventListener("click", () => {
+  const token = localStorage.getItem("accessToken");
+  if (token) {
+    window.location.href = `/profile/index.html`;
+  } else {
+    alert("You must be logged in to view your profile");
+  }
+});
+
 /**
  * Creates a new user object and posts it to the API.
  * removes all whitespace from the name input
