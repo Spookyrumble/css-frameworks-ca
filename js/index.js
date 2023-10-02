@@ -1,4 +1,5 @@
 import { checkboxValidation } from "./utils.js";
+import { linkAuthorizations } from "./components/navLinks.mjs";
 export const API_BASE_URL = "https://api.noroff.dev/api/v1/social/";
 const authString = "auth/";
 const registerString = "register/";
@@ -9,15 +10,7 @@ const nameInput = document.getElementById("fullName");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 
-const profileLink = document.getElementById("profileNav");
-profileLink.addEventListener("click", () => {
-  const token = localStorage.getItem("accessToken");
-  if (token) {
-    window.location.href = `/profile/index.html`;
-  } else {
-    alert("You must be logged in to view your profile");
-  }
-});
+linkAuthorizations();
 
 /**
  * Creates a new user object and posts it to the API.

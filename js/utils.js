@@ -63,28 +63,3 @@ async function apiFetch(url, fetchMethod, body = null) {
 }
 
 export { apiFetch };
-
-// async function checkFollowingStatus(textElement, targetUserName) {
-//   try {
-//     // Fetch your own profile data (it returns json)
-//     const response = await apiFetch(
-//       `${API_BASE_URL}/profiles/Hans?_following=true`
-//     );
-//     const profileData = response;
-
-//     // Check if you are following the target user
-//     const isFollowing = profileData.following.some(
-//       (followingUser) => followingUser.name === targetUserName
-//     );
-
-//     if (isFollowing) {
-//       textElement.textContent = "Unfollow";
-//     } else {
-//       textElement.textContent = "Follow";
-//     }
-//   } catch (error) {
-//     console.error("Error checking following status:", error);
-//   }
-// }
-
-// export { checkFollowingStatus };

@@ -36,15 +36,23 @@
           >
             <ul class="navbar-nav text-center mr-auto">
               <li class="nav-item">
-                <a id="profileNav" class="nav-link text-light" href="#"
+                <a
+                  id="profileNavLink"
+                  class="nav-link text-light disabled"
+                  href="/profile"
                   >Profile</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="/feed/index.html">Feed</a>
+                <a
+                  id="feedNavLink"
+                  class="nav-link text-light disabled"
+                  href="/feed"
+                  >Feed</a
+                >
               </li>
               <li class="nav-item">
-                <a id="signOut" class="nav-link text-light" href="#"
+                <a id="signOut" class="nav-link text-light disabled" href="#"
                   >Sign out</a
                 >
               </li>
@@ -55,7 +63,12 @@
                 type="text"
                 placeholder="Search"
               />
-              <button class="btn btn-light m-2 my-sm-0" type="submit">
+              <button
+                id="searchNavBtn"
+                class="btn btn-light m-2 my-sm-0"
+                type="submit"
+                disabled
+              >
                 Search
               </button>
             </form>

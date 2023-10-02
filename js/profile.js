@@ -44,32 +44,9 @@ async function fetchUser(url, fetchOptions) {
     const json = await response.json();
     console.log(json);
     return json;
-    // displayUserProfile(json);
   } catch (error) {
     console.log(error);
   }
-}
-
-function renderProfile() {
-  const url = `${API_BASE_URL}/profiles/${userId}`;
-  fetchUser(url, userOptions).then((json) => displayUserProfile(json));
-  // const data = fetchUser(url, userOptions);
-}
-displayUserProfile;
-// fetchUser(`${API_BASE_URL}profiles/${id}`, userOptions);
-renderProfile();
-
-// function that loops through the data and displays the user profile
-function displayUserProfile(data) {
-  const profileContainer = document.querySelector("#profileContainer");
-  const profileName = document.querySelector("#nameContainer");
-  // const profileAvatar = document.querySelector("#imageContainer");
-
-  // profileAvatar.src = data.avatar;
-  profileName.innerText = data.name;
-
-  // profileContainer.appendChild(profileAvatar);
-  profileContainer.appendChild(profileName);
 }
 
 // function that listens to the signout and removes the token from local storage
