@@ -40,15 +40,20 @@
           >
             <ul class="navbar-nav text-center mr-auto">
               <li class="nav-item">
-                <a class="nav-link text-light" href="/profile/index.html"
-                  >Profile</a
+                <a id="profileNavLink" class="nav-link text-light">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  id="feedNavLink"
+                  class="nav-link text-light"
+                  href="/feed/index.html"
+                  >Feed</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="/feed/index.html">Feed</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="/index.html">Sign out</a>
+                <a id="signOut" class="nav-link text-light" href="/index.html"
+                  >Sign out</a
+                >
               </li>
             </ul>
             <form class="form d-flex my-2 my-lg-0">
@@ -69,7 +74,7 @@
       <h1 class="text-center">Connotation</h1>
       <div class="container-xl p-5">
         <div class="row">
-          <div class="col-lg-4 mb-5 shadow p-2">
+          <!-- <div class="col-lg-4 mb-5 shadow p-2">
             <h2 class="visually-hidden">profile</h2>
             <div class="d-flex">
               <div class="d-flex mx-auto overflow-hidden">
@@ -110,8 +115,8 @@
             <div class="text-center">
               <button class="btn btn-secondary mt-4">Add Friend</button>
             </div>
-          </div>
-          <div class="col-lg-4 mb-5 shadow p-2">
+          </div> -->
+          <div class="col-lg-6 mb-5 shadow p-2">
             <h4>Friends</h4>
             <a href="#"
               ><div class="col-4 p-1 d-flex w-100">
@@ -144,10 +149,31 @@
               </div></a
             >
           </div>
-          <div class="col-lg-4 shadow mb-5 p-2">
+          <div class="col-lg-6 shadow mb-5 p-2">
             <form>
               <h4 class="text-center p-2">Create post</h4>
-              <textarea class="form-control" id="textarea" rows="3"></textarea>
+              <label for="title">Title</label>
+              <input
+                class="form-control mb-2"
+                id="title"
+                type="text"
+                required
+                placeholder="(Required)"
+              />
+              <label for="body">Message</label>
+              <textarea
+                class="form-control mb-2"
+                id="body"
+                rows="3"
+                placeholder="(Optional)"
+              ></textarea>
+              <label for="media">Image address (URL)</label>
+              <input
+                class="form-control"
+                type="text"
+                id="media"
+                placeholder="(Optional) Must be valid image URL"
+              />
               <div class="d-flex justify-content-end mt-2">
                 <button class="btn btn-dark px-4 text-light">Post</button>
               </div>
@@ -157,12 +183,16 @@
             <h4 class="text-center">Feed</h4>
             <div>
               <div class="form-group text-end my-5">
-                <label for="sortBy"></label>
+                <label for="sortBy">Filter</label>
                 <select class="form-control-sm" id="sortBy">
+                  <!-- <option>All</option> -->
                   <option>Newest</option>
                   <option>Oldest</option>
                   <option>Friends</option>
                 </select>
+                <label for="search">Search</label>
+                <input type="text" id="search" />
+                <button class="btn btn-primary me-2">Go</button>
               </div>
             </div>
             <!-- <div id="feedBox" class="row mb-5 border-bottom p-2">

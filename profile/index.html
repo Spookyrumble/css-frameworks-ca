@@ -7,7 +7,7 @@
     <title>Connotation Profile</title>
     <link rel="stylesheet" href="../dist/css/index.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/profile.js" type="module"></script>
+    <script defer src="../js/profile.js" type="module"></script>
   </head>
   <body>
     <header>
@@ -33,13 +33,13 @@
         >
             <ul class="navbar-nav text-center mr-auto">
               <li class="nav-item">
-                <a class="nav-link text-light" href="#">Profile</a>
+                <a id="profileNavLink" class="nav-link text-light">Profile</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="../feed/index.html">Feed</a>
+                <a id="feedNavLink" class="nav-link text-light" href="../feed/">Feed</a>
               </li>
               <li class="nav-item">
-                <a id="signOut" class="nav-link text-light" href="#">Sign out</a>
+                <a id="signOut" class="nav-link text-light">Sign out</a>
               </li>
             </ul>
             <form class="form d-flex my-2 my-lg-0">
@@ -57,58 +57,59 @@
       </div>
     </header>
     <main>
-      <h1 class="text-center m-sm-5">Profile page</h1>
-      <div class="container shadow">
+      <h1 id="dynamicProfileTitle" class="text-center m-sm-5">Profile page</h1>
+      <div id="profileContainer" class="container shadow">
         <div class="d-flex justify-content-between">
           <div id="profileContainer">
-            <h2 id="nameContainer" class="my-sm-2">Dustin Makebelieve</h2>
+            <h2 id="nameContainer" class="my-sm-2">Loading..</h2>
           </div>
           <div class="d-flex flex-column">
-            <button class="btn btn-primary my-1">New post</button>
-            <button class="btn btn-primary my-1">Unfollow</button>
+            <!-- <button class="btn btn-primary my-1">New post</button> -->
+            <button id="profileFollowBtn" class="btn btn-primary my-1">Follow</button>
           </div>
         </div>
         <div class="col-12">
           <div id="imageContainer" class="customProfilePicCont d-flex overflow-hidden">
-            <img src="../images/profilePics/iheb-ab-OBufvGMaBaQ-unsplash_dustin.jpg" alt="profile picture">
           </div>
           <p class="p-sm-2">A passionate explorer, blending curiosity with creativity. An avid learner, traveler, and music enthusiast, always seeking the next adventure and tune to groove to</p>
         </div>
         <div class="row text-center border-top border-secondary p-1">
           <div class="col-4">
             <p>Posts</p>
-            <p>42</p>
+            <p id="postCounter">0</p>
           </div>
           <div class="col-4"><p>
-            Following
+            Followers
           </p>
-          <p>282</p>
+          <p id="followerCounter">0</p>
         </div>
           <div class="col-4">
             <p>
-              Followers
+              Following
             </p>
-            <p>
-              91
+            <p id="followingCounter">
+              0
             </p>
           </div>
         </div>
       </div>
       <div class="container shadow">
-        <h3 class="text-center my-lg-4 p-1">Recent posts</h3>
-        <div class="row mb-5 border-bottom p-2">
-          <div class="d-flex w-100 justify-content-between">
-              <div class="d-flex">
-                  <img class="customThumbnail" src="/images/profilePics/iheb-ab-OBufvGMaBaQ-unsplash_dustin.jpg" alt="dustins profile image">
-                  <p class="mx-2 text-dark">Dustin Makebelieve<br>
-                  <span class="text-primary"><small>1 min ago</small></span></p>
-              </div>
-              <div>
-                  <a href="#"><small><span>Unfollow</span></small></a>
-              </div>
-          </div>
-          <div>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui iste sapiente expedita rerum temporibus aperiam tenetur, adipisci tempore sunt voluptas.</p>
+        <h3 id="dynamicFeedTitle" class="text-center my-lg-4 p-1">Recent posts</h3>
+        <div id="feedContainer" class="row mb-5 border-bottom p-2"></div>
+          <!-- <div>
+            <div class="d-flex w-100 justify-content-between">
+                <div class="d-flex">
+                    <img class="customThumbnail" src="/images/profilePics/iheb-ab-OBufvGMaBaQ-unsplash_dustin.jpg" alt="dustins profile image">
+                    <p class="mx-2 text-dark">Dustin Makebelieve<br>
+                    <span class="text-primary"><small>1 min ago</small></span></p>
+                </div>
+                <div>
+                    <a href="#"><small><span>Unfollow</span></small></a>
+                </div>
+            </div>
+            <div>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui iste sapiente expedita rerum temporibus aperiam tenetur, adipisci tempore sunt voluptas.</p>
+            </div>
           </div>
       </div>
       <div class="row mb-5 border-bottom p-2">
@@ -128,7 +129,7 @@
           <div>
             <img class="img-fluid" src="/images/kirill-petropavlov-f_gCjlNcVWo-unsplash_ducati.jpg" alt="ducati motorcycle">
         </div>
-      </div>
+      </div> -->
     </main>
     <footer>
       <p class="text-dark text-center">

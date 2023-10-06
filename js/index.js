@@ -76,10 +76,9 @@ async function loginUser(url, data) {
     console.log(response);
     if (response.ok) {
       const json = await response.json();
-      const accessToken = json.accessToken;
-      const userId = json.name;
+      const { accessToken, name } = json;
       localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("userId", userId);
+      localStorage.setItem("userId", name);
       console.log(json);
       return { success: true, data: json };
     } else {
@@ -113,7 +112,8 @@ function formListener() {
       console.log(result);
 
       if (result.success && localStorage.getItem("accessToken")) {
-        window.location.href = `/profile/index.html?id=${result.data.name}`;
+        const userId = localStorage.getItem("userId");
+        window.location.replace(`/profile/index.html?id=${userId}`);
       } else {
         console.log("user does not exist or credentials are wrong");
         alert("user does not exist or credentials are wrong");

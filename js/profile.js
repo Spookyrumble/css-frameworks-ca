@@ -1,60 +1,61 @@
-import { API_BASE_URL } from "./utils.js";
+import { loadProfile } from "./components/profileHandler.mjs";
+import { buildFeed } from "./components/postHandler.mjs";
+import { buildUserFeed } from "./components/postHandler.mjs";
+import { buildSinglePost } from "./components/postHandler.mjs";
+import { navListeners, signOutListener } from "./components/navLinks.mjs";
+
+navListeners();
+signOutListener();
 
 const queryString = document.location.search;
 const params = new URLSearchParams(queryString);
-const id = params.get("id");
-
-const token = localStorage.getItem("accessToken");
+const searchId = params.get("id");
 const userId = localStorage.getItem("userId");
 
-const userOptions = {
-  headers: {
-    "content-type": "application/json",
-    Authorization: `Bearer ${token}`,
-  },
-};
-
 /**
- * Asynchronously fetches user data from the specified URL using the provided fetch options.
- * Logs the fetched data to the console if the fetch is successful, or logs an error if the fetch fails.
- * Calls the displayUserProfile function with the fetched data.
+ * Verifies the format of the querystring (document.location.search, or searchId in this case) and calls appropriate functions
+ * based on its format.
  *
- * @async
+ * - If searchId is null, it loads the user profile and feed for the given userId.
+ * - If searchId contains both letters and numbers, it loads the profile and user feed for the searchId.
+ * - If searchId consists only of numbers, it builds a single post using the searchId.
+ *
  * @function
- * @param {string} url - The URL to fetch data from.
- * @param {Object} fetchOptions - The options object to pass to the fetch function.
- * @throws Will log and throw an error if the fetch fails.
- * @returns {undefined} Nothing is returned from this function.
- *
+ * @global
+ * @requires loadProfile
+ * @requires buildFeed
+ * @requires buildUserFeed
+ * @requires buildSinglePost
  * @example
  *
- * const url = 'https://api.example.com/user';
- * const options = {
- *   method: 'GET',
- *   headers: {
- *     'Content-Type': 'application/json',
- *   },
- * };
+ * // Assuming `searchId` is globally defined.
  *
- * fetchUser(url, options);
+ * // If searchId is '123abc':
+ * // This will call loadProfile('123abc') and buildUserFeed('123abc').
+ *
+ * // If searchId is '12345':
+ * // This will call buildSinglePost('12345').
+ * // loadProfile will be built with data from the data passed to buildSinglePost.
+ *
+ * // If searchId is null and userId is 'abcUser':
+ * // This will call loadProfile('abcUser') and buildFeed('abcUser').
+ *
+ * idVerify();
  */
-async function fetchUser(url, fetchOptions) {
-  try {
-    const response = await fetch(url, fetchOptions);
-    const json = await response.json();
-    console.log(json);
-    return json;
-  } catch (error) {
-    console.log(error);
+function idVerify() {
+  const isOnlyNumbers = /^\d+$/.test(searchId);
+  const hasLetterAndNumber = /[a-zA-Z]/.test(searchId);
+  if (searchId === null) {
+    const userIdentifier = userId;
+    loadProfile(userIdentifier);
+    buildFeed(userIdentifier);
+  } else if (hasLetterAndNumber) {
+    const userIdentifier = searchId;
+    loadProfile(userIdentifier);
+    buildUserFeed(userIdentifier);
+  } else if (isOnlyNumbers) {
+    const userIdentifier = searchId;
+    buildSinglePost(userIdentifier);
   }
 }
-
-// function that listens to the signout and removes the token from local storage
-import { logOut } from "./utils.js";
-function signOutListener() {
-  const signOutBtn = document.querySelector("#signOut");
-  signOutBtn.addEventListener("click", function () {
-    logOut();
-  });
-}
-signOutListener();
+idVerify();

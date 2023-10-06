@@ -1,3 +1,4 @@
+import { logOut } from "../utils.js";
 /**
  * Manages the authorization for profile and feed navigation links, the search button, and the sign out button based on the presence of an access token.
  *
@@ -14,12 +15,15 @@
  * // Call this function once to set up the authorization based interactions.
  * linkAuthorizations();
  */
-export function linkAuthorizations() {
-  const profileLink = document.getElementById("profileNavLink");
-  const feedLink = document.getElementById("feedNavLink");
-  const searchBtn = document.getElementById("searchNavBtn");
-  const signOut = document.getElementById("signOut");
+const profileLink = document.getElementById("profileNavLink");
+profileLink.style.cursor = "pointer";
+const feedLink = document.getElementById("feedNavLink");
+feedLink.style.cursor = "pointer";
+const searchBtn = document.getElementById("searchNavBtn");
+const signOut = document.getElementById("signOut");
+signOut.style.cursor = "pointer";
 
+export function linkAuthorizations() {
   const token = localStorage.getItem("accessToken");
   if (token) {
     profileLink.classList.remove("disabled");
@@ -28,3 +32,18 @@ export function linkAuthorizations() {
     searchBtn.removeAttribute("disabled");
   }
 }
+
+function navListeners() {
+  profileLink.addEventListener("click", () => {
+    const loggedInUser = localStorage.getItem("userId");
+    window.location.href = `/profile/index.html?id=${loggedInUser}`;
+  });
+}
+
+function signOutListener() {
+  const signOutBtn = document.querySelector("#signOut");
+  signOutBtn.addEventListener("click", function () {
+    logOut();
+  });
+}
+export { navListeners, signOutListener };
