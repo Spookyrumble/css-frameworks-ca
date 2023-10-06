@@ -36,22 +36,39 @@
           >
             <ul class="navbar-nav text-center mr-auto">
               <li class="nav-item">
-                <a class="nav-link text-light" href="/index.html">Profile</a>
+                <a
+                  id="profileNavLink"
+                  class="nav-link text-light disabled"
+                  href="/profile"
+                  >Profile</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="/feed/index.html">Feed</a>
+                <a
+                  id="feedNavLink"
+                  class="nav-link text-light disabled"
+                  href="/feed"
+                  >Feed</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="../index.html">Sign out</a>
+                <a id="signOut" class="nav-link text-light disabled" href="#"
+                  >Sign out</a
+                >
               </li>
             </ul>
-            <form class="form d-flex my-2 my-lg-0 d-none">
+            <form class="form d-flex my-2 my-lg-0">
               <input
                 class="form-control mr-sm-2"
                 type="text"
                 placeholder="Search"
               />
-              <button class="btn btn-light m-2 my-sm-0" type="submit">
+              <button
+                id="searchNavBtn"
+                class="btn btn-light m-2 my-sm-0"
+                type="submit"
+                disabled
+              >
                 Search
               </button>
             </form>
@@ -81,6 +98,7 @@
                 id="email"
                 aria-describedby="emailHelp"
                 required
+                autocomplete
               />
               <div id="emailHelp" class="form-text">Noroff email required.</div>
             </div>
@@ -106,7 +124,9 @@
               >
             </div>
             <div id="newUserInput" class="mb-3 d-none">
-              <label for="name" class="form-label">Full Name</label>
+
+              <label for="fullName" class="form-label">Full Name</label>
+
               <input
                 type="name"
                 class="form-control"
