@@ -2,6 +2,10 @@ import { fetchUserProfile } from "../API/userFetch.mjs";
 
 export function populateProfile(user) {
   const userName = document.getElementById("nameContainer");
+  const profileFollowBtn = document.getElementById("profileFollowBtn");
+  if (user.name === localStorage.getItem("userId")) {
+    profileFollowBtn.setAttribute("hidden", true);
+  }
 
   userName.innerText = user.name;
 
@@ -17,17 +21,14 @@ export function populateProfile(user) {
   const postCounter = document.getElementById("postCounter");
   const postCount = user._count.posts;
   postCounter.innerText = `${postCount}`;
-  console.log(postCount);
 
   const followerCounter = document.getElementById("followerCounter");
   const followCount = user._count.followers;
   followerCounter.innerText = `${followCount}`;
-  console.log(followCount);
 
   const followingCounter = document.getElementById("followingCounter");
   const followingCount = user._count.following;
   followingCounter.innerText = `${followingCount}`;
-  console.log(followingCount);
 }
 
 export async function loadProfile(userId) {

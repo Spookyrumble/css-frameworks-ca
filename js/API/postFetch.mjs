@@ -17,13 +17,3 @@ export async function postFetch() {
     console.log("Error loading posts:", error);
   }
 }
-// async function fetchUserPosts(url) {
-//   try {
-//     const response = await apiFetch(url);
-//     const postData = response;
-//     console.log(postData);
-//     return postData;
-//   } catch (error) {
-//     console.error("Error loading user posts:", error);
-//   }
-// }

@@ -4,34 +4,37 @@ import { apiFetch } from "../utils.js";
 import { fetchUsersPosts } from "../API/userPostFetch.mjs";
 import { authorInclude, baseUrl } from "../API/urls.js";
 import { loadProfile } from "./profileHandler.mjs";
+import { loadFollowingData, isFollowing } from "./followerHandler.mjs";
+// import { feedFilter } from "./searchHandler.mjs";
 
-const userId = localStorage.getItem("userId");
-let followingData = null;
+loadFollowingData();
 
-async function loadFollowingData(userId) {
-  try {
-    const response = await apiFetch(
-      `${API_BASE_URL}/profiles/${userId}?_following=true`
-    );
-    const profileData = response;
-    followingData = profileData.following;
-  } catch (error) {
-    console.error("Error loading following data:", error);
-  }
-}
-
-function isFollowing(targetUsername) {
-  return (
-    followingData &&
-    followingData.some((followingUser) => followingUser.name === targetUsername)
-  );
-}
-
-// loadFollowingData();
-
+/**
+ * Creates and appends a post element to the "feedContainer" DOM element.
+ *
+ * @param {Object} post - The post data.
+ * @param {Object} post.author - The post author's data.
+ * @param {string} post.author.name - The name of the post author.
+ * @param {string} [post.author.avatar] - The avatar URL of the post author. Defaults to a generic avatar if not provided.
+ * @param {string} post.title - The title of the post.
+ * @param {string} post.body - The body content of the post.
+ * @param {string} [post.media] - The media URL for the post (e.g., image). Optional.
+ *
+ * @example
+ * const post = {
+ *   author: {
+ *     name: "John Doe",
+ *     avatar: "https://example.com/avatar.jpg"
+ *   },
+ *   title: "Sample Post",
+ *   body: "This is a sample post content.",
+ *   media: "https://example.com/sample.jpg"
+ * };
+ *
+ * createPost(post);
+ */
+const feedContainer = document.getElementById("feedContainer");
 function createPost(post) {
-  const feedContainer = document.getElementById("feedContainer");
-
   const feedBox = document.createElement("div");
   feedBox.classList.add("row", "mb-5", "border-bottom", "p-2");
 
@@ -110,6 +113,7 @@ function createPost(post) {
 
   const bodyBox = document.createElement("div");
   const bodyText = document.createElement("p");
+  bodyText.classList.add("text-break");
   bodyText.innerText = post.body;
 
   if (!post.media == null || !post.media == "") {
@@ -140,7 +144,7 @@ function createPost(post) {
   feedContainer.appendChild(feedBox);
 }
 
-function createPosts(posts) {
+export function createPosts(posts) {
   for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
     createPost(post);
@@ -168,8 +172,6 @@ export async function buildSinglePost() {
     "get"
   );
 
-  //   console.log(postById);
   await loadProfile(postById.author.name);
   createPost(postById);
-  loadFollowingData(postById.author.name);
 }
