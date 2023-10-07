@@ -2,10 +2,33 @@ import { API_BASE_URL } from "../utils.js";
 import { postFetch } from "../API/postFetch.mjs";
 import { apiFetch } from "../utils.js";
 import { fetchUsersPosts } from "../API/userPostFetch.mjs";
-import { authorInclude, baseUrl } from "../API/urls.js";
+import { authorInclude, baseUrl, profileUrl } from "../API/urls.js";
 import { loadProfile } from "./profileHandler.mjs";
-import { loadFollowingData, isFollowing } from "./followerHandler.mjs";
+// import { loadFollowingData, isFollowing } from "./followerHandler.mjs";
+import { feedFilter } from "./searchHandler.mjs";
 // import { feedFilter } from "./searchHandler.mjs";
+
+const userId = localStorage.getItem("userId");
+let followingData = null;
+
+async function loadFollowingData() {
+  try {
+    const response = await apiFetch(
+      `${baseUrl}${profileUrl}/${userId}?_following=true`
+    );
+    const profileData = response;
+    followingData = profileData.following;
+  } catch (error) {
+    console.error("Error loading following data:", error);
+  }
+}
+
+function isFollowing(targetUsername) {
+  return (
+    followingData &&
+    followingData.some((followingUser) => followingUser.name === targetUsername)
+  );
+}
 
 loadFollowingData();
 
@@ -152,8 +175,23 @@ export function createPosts(posts) {
 }
 
 export async function buildFeed() {
+  //   const postData = await postFetch();
+  // const postData = await feedFilter();
+  // 1. Fetch all posts
   const postData = await postFetch();
-  createPosts(postData);
+
+  // 2. Get the filteredArray
+  const filteredArray = await feedFilter(); // Assuming feedFilter returns a list of names or similar identifiers
+  console.log({ filteredArray });
+
+  // 3. Filter through postData and if the object's name matches the ones in the filteredArray, run them through createPosts()
+  postData.filter((post) => {
+    if (filteredArray.includes(post.author.name)) {
+      console.log({ filteredArray });
+      createPosts(post); // Assuming createPosts is a function that takes a post object
+    }
+  });
+  //   createPosts(postData);
 }
 
 export async function buildUserFeed(user) {

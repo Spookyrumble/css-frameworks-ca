@@ -10,7 +10,7 @@ import {
 
 const userId = localStorage.getItem("userId");
 
-export function feedFilter() {
+export async function feedFilter() {
   const dropdownFilter = document.getElementById("sortBy");
   //   console.log({ dropdownFilter });
 
@@ -24,9 +24,15 @@ export function feedFilter() {
         "GET"
       ); // Fetch posts using async/await
 
+      // Now fetch all the posts
+      const allPosts = await apiFetch(
+        `${baseUrl}${postUrl}${authorInclude}`,
+        "GET"
+      );
+
       let sortedArray;
       switch (value) {
-        case "all":
+        case "All":
           sortedArray = allPosts;
           break;
         case "Newest":
@@ -39,22 +45,10 @@ export function feedFilter() {
             (a, b) => new Date(a.created) - new Date(b.created)
           );
           break;
-          // case "friends":
-          //   sortedArray = posts.filter((item) => item.following);
-          //   break;
-          // default:
-          //   sortedArray = posts; // Defaulting to the original list in case no match is found
-          break;
+
         case "Friends":
           // Extract list of friend names
           const friendNames = posts.following.map((friend) => friend.name);
-          console.log(friendNames);
-
-          // Now fetch all the posts
-          const allPosts = await apiFetch(
-            `${baseUrl}${postUrl}${authorInclude}`,
-            "GET"
-          );
 
           // Filter posts written by friends
           sortedArray = allPosts.filter((post) =>
@@ -63,12 +57,13 @@ export function feedFilter() {
 
           break;
         default:
-          sortedArray = posts; // Defaulting to the original list in case no match is found
+          sortedArray = allPosts; // Defaulting to the original list in case no match is found
       }
       console.log({ sortedArray });
-      return sortedArray;
+      resolve(sortedArray);
     } catch (error) {
       console.error("Error fetching or processing posts:", error);
+      resolve([]);
     }
   });
 }
