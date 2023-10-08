@@ -4,8 +4,7 @@ import { apiFetch } from "../utils.js";
 import { fetchUsersPosts } from "../API/userPostFetch.mjs";
 import { authorInclude, baseUrl, profileUrl } from "../API/urls.js";
 import { loadProfile } from "./profileHandler.mjs";
-// import { loadFollowingData, isFollowing } from "./followerHandler.mjs";
-import { feedFilter } from "./filterHandler.mjs";
+import { deletePost } from "./deleteHandler.mjs";
 
 const userId = localStorage.getItem("userId");
 let followingData = null;
@@ -104,12 +103,30 @@ function createPost(post) {
     followUnfollowLink.style.display = "none";
     const editBtn = document.createElement("a");
     editBtn.innerText = "Edit";
+    editBtn.dataset.bsToggle = "modal";
+    editBtn.dataset.bsTarget = "#editModal";
     editBtn.href = "#";
+    editBtn.classList.add("my-1");
     followUnfollowBox.appendChild(editBtn);
     const deleteBtn = document.createElement("a");
     deleteBtn.innerText = "Delete";
     deleteBtn.href = "#";
     followUnfollowBox.appendChild(deleteBtn);
+
+    deleteBtn.addEventListener("click", () => {
+      const deleted = deletePost(post.id);
+      if (deleted) {
+        feedBox.remove();
+      }
+    });
+    editBtn.addEventListener("click", () => {
+      const openModal = new bootstrap.Modal(
+        document.getElementById("editModal")
+      );
+      editBtn.addEventListener("click", () => {
+        openModal.show();
+      });
+    });
   }
 
   followUnfollowLink.addEventListener("click", async (e) => {
@@ -139,7 +156,7 @@ function createPost(post) {
   const titleBox = document.createElement("div");
   const titleLink = document.createElement("a");
   titleLink.href = `/profile/index.html?id=${post.id}`;
-  titleLink.classList.add("text-dark");
+  titleLink.classList.add("text-dark", "fw-bold", "fs-6");
   titleLink.style.textDecoration = "none";
   const titleText = document.createElement("p");
   titleText.classList.add("mt-2");

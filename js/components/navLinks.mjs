@@ -1,27 +1,14 @@
 import { logOut } from "../utils.js";
-/**
- * Manages the authorization for profile and feed navigation links, the search button, and the sign out button based on the presence of an access token.
- *
- * This function retrieves the navigation link elements for the profile and feed pages,
- * the search button element, and the sign out button element from the DOM.
- * It then checks for the presence of an access token in local storage.
- * If an access token is found, it removes the "disabled" class from the profile and feed links,
- * the sign out button, and the `disabled` attribute from the search button, effectively enabling them.
- *
- * @function
- * @export
- *
- * @example
- * // Call this function once to set up the authorization based interactions.
- * linkAuthorizations();
- */
+
+const logoLink = document.getElementById("logoLink");
 const profileLink = document.getElementById("profileNavLink");
 profileLink.style.cursor = "pointer";
 const feedLink = document.getElementById("feedNavLink");
 feedLink.style.cursor = "pointer";
-// const searchBtn = document.getElementById("searchNavBtn");
+const searchBtn = document.getElementById("searchNavBtn");
 const signOut = document.getElementById("signOut");
 signOut.style.cursor = "pointer";
+const loggedInUser = localStorage.getItem("userId");
 
 export function linkAuthorizations() {
   const token = localStorage.getItem("accessToken");
@@ -29,8 +16,14 @@ export function linkAuthorizations() {
     profileLink.classList.remove("disabled");
     feedLink.classList.remove("disabled");
     signOut.classList.remove("disabled");
-    // searchBtn.removeAttribute("disabled");
+    searchBtn.removeAttribute("disabled");
   }
+}
+
+function logoListener() {
+  logoLink.addEventListener("click", () => {
+    window.location.href = `/profile/index.html?id=${loggedInUser}`;
+  });
 }
 
 function navListeners() {
@@ -46,4 +39,4 @@ function signOutListener() {
     logOut();
   });
 }
-export { navListeners, signOutListener };
+export { navListeners, signOutListener, logoListener };

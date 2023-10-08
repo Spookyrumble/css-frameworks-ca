@@ -17,11 +17,15 @@ export function createPostEntry() {
 
     try {
       const response = await apiFetch(`${baseUrl}${postUrl}`, "POST", post);
-      if (response.ok) {
+      if (response) {
         console.log("Post created:", response);
       }
     } catch (error) {
       console.error("Error creating post:", error);
     }
+    createPostForm.reset();
+    setTimeout(function () {
+      location.reload();
+    }, 800);
   });
 }

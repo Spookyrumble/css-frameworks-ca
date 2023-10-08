@@ -1,5 +1,5 @@
 import { apiFetch } from "../utils.js";
-import { buildFeed, createPosts } from "./postHandler.mjs";
+import { buildFeed } from "./postHandler.mjs";
 import {
   baseUrl,
   postUrl,

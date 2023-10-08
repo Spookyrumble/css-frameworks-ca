@@ -17,7 +17,7 @@
     <header>
       <div class="bs-component mb-5">
         <nav class="navbar navbar-expand-lg bgGradient">
-          <a class="navbar-brand text-light m-2" href="../index.html"
+          <a id="logoLink" class="navbar-brand text-light m-2" disabled
             ><img
               class="logoSizing"
               src="../images/logo/logo_dark.png"
@@ -133,7 +133,7 @@
                 type="text"
                 id="media"
                 name="media"
-                placeholder="(Optional) Must be valid image URL"
+                placeholder="(Optional) Must be valid image URL address"
               />
               <div class="d-flex justify-content-end mt-2">
                 <button class="btn btn-dark px-4 text-light">Post</button>
@@ -157,7 +157,44 @@
             />
           </form>
           <div id="feedContainer" class="col-lg-12 shadow p-2">
-            <div></div>
+            <!-- <div></div> -->
+            <div
+              class="modal fade"
+              id="editModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="editModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit post</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">...</div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                      Save changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

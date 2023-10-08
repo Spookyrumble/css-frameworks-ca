@@ -1,5 +1,5 @@
 import { navListeners, signOutListener } from "./components/navLinks.mjs";
-import { buildFeed, createPosts } from "./components/postHandler.mjs";
+import { buildFeed } from "./components/postHandler.mjs";
 import { feedFilter } from "./components/filterHandler.mjs";
 import { performSearch } from "./components/searchHandler.mjs";
 import { createPostEntry } from "./components/createPostHandler.mjs";
