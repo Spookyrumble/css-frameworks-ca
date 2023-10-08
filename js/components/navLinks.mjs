@@ -19,7 +19,7 @@ const profileLink = document.getElementById("profileNavLink");
 profileLink.style.cursor = "pointer";
 const feedLink = document.getElementById("feedNavLink");
 feedLink.style.cursor = "pointer";
-const searchBtn = document.getElementById("searchNavBtn");
+// const searchBtn = document.getElementById("searchNavBtn");
 const signOut = document.getElementById("signOut");
 signOut.style.cursor = "pointer";
 
@@ -29,7 +29,7 @@ export function linkAuthorizations() {
     profileLink.classList.remove("disabled");
     feedLink.classList.remove("disabled");
     signOut.classList.remove("disabled");
-    searchBtn.removeAttribute("disabled");
+    // searchBtn.removeAttribute("disabled");
   }
 }
 

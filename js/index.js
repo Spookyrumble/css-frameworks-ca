@@ -5,6 +5,8 @@ const authString = "auth/";
 const registerString = "register/";
 const loginString = "login/";
 
+linkAuthorizations();
+
 // ADDS THE FULL NAME INPUT WHEN NEW USER CHECKBOX IS CHECKED AND ENABLES THE REGISTER BUTTON
 const newUserToggle = document.getElementById("newUserCheckBox");
 const newUserBtn = document.getElementById("registerBtn");
@@ -25,8 +27,6 @@ const form = document.getElementById("loginForm");
 const nameInput = document.getElementById("fullName");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
-
-linkAuthorizations();
 
 /**
  * Creates a new user object and posts it to the API.

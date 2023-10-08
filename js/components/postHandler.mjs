@@ -5,8 +5,7 @@ import { fetchUsersPosts } from "../API/userPostFetch.mjs";
 import { authorInclude, baseUrl, profileUrl } from "../API/urls.js";
 import { loadProfile } from "./profileHandler.mjs";
 // import { loadFollowingData, isFollowing } from "./followerHandler.mjs";
-import { feedFilter } from "./searchHandler.mjs";
-// import { feedFilter } from "./searchHandler.mjs";
+import { feedFilter } from "./filterHandler.mjs";
 
 const userId = localStorage.getItem("userId");
 let followingData = null;
@@ -90,6 +89,7 @@ function createPost(post) {
   nameBox.innerText = post.author.name;
 
   const followUnfollowBox = document.createElement("div");
+  followUnfollowBox.classList.add("d-flex", "flex-column", "text-end");
   const followUnfollowLink = document.createElement("a");
   followUnfollowLink.href = "#";
   const smallElement = document.createElement("small");
@@ -99,6 +99,17 @@ function createPost(post) {
     spanElement.textContent = "Unfollow";
   } else {
     spanElement.textContent = "Follow";
+  }
+  if (post.author.name === localStorage.getItem("userId")) {
+    followUnfollowLink.style.display = "none";
+    const editBtn = document.createElement("a");
+    editBtn.innerText = "Edit";
+    editBtn.href = "#";
+    followUnfollowBox.appendChild(editBtn);
+    const deleteBtn = document.createElement("a");
+    deleteBtn.innerText = "Delete";
+    deleteBtn.href = "#";
+    followUnfollowBox.appendChild(deleteBtn);
   }
 
   followUnfollowLink.addEventListener("click", async (e) => {
@@ -167,31 +178,22 @@ function createPost(post) {
   feedContainer.appendChild(feedBox);
 }
 
-export function createPosts(posts) {
+export async function createPosts(posts) {
   for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
     createPost(post);
   }
 }
 
-export async function buildFeed() {
-  //   const postData = await postFetch();
-  // const postData = await feedFilter();
-  // 1. Fetch all posts
-  const postData = await postFetch();
-
-  // 2. Get the filteredArray
-  const filteredArray = await feedFilter(); // Assuming feedFilter returns a list of names or similar identifiers
-  console.log({ filteredArray });
-
-  // 3. Filter through postData and if the object's name matches the ones in the filteredArray, run them through createPosts()
-  postData.filter((post) => {
-    if (filteredArray.includes(post.author.name)) {
-      console.log({ filteredArray });
-      createPosts(post); // Assuming createPosts is a function that takes a post object
-    }
-  });
-  //   createPosts(postData);
+export async function buildFeed(filteredData) {
+  if (filteredData) {
+    feedContainer.innerHTML = "";
+    createPosts(filteredData);
+  } else {
+    const allPosts = await postFetch();
+    feedContainer.innerHTML = "";
+    createPosts(allPosts);
+  }
 }
 
 export async function buildUserFeed(user) {
