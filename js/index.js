@@ -45,7 +45,7 @@ function createNewUser() {
   const userPassword = passwordInput.value;
 
   const userObject = {
-    name: userName.toLowerCase(),
+    name: userName,
     email: userEmail,
     password: userPassword,
   };
