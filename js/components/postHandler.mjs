@@ -182,7 +182,7 @@ function createPost(post) {
     if (spanElement.textContent === "Follow") {
       spanElement.textContent = "Unfollow";
       await apiFetch(
-        `${API_BASE_URL}/profiles/${post.author.name}/follow`,
+        `${baseUrl}/profiles/${post.author.name}/follow`,
         "put",
         "body"
       );
@@ -190,7 +190,7 @@ function createPost(post) {
     } else {
       spanElement.textContent = "Follow";
       await apiFetch(
-        `${API_BASE_URL}/profiles/${post.author.name}/unfollow`,
+        `${baseUrl}/profiles/${post.author.name}/unfollow`,
         "put",
         "body"
       );
