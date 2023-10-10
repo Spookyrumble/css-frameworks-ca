@@ -172,7 +172,10 @@ function formListener() {
     } else {
       const user = grabsUserData();
       console.log(user);
-      const result = await loginUser(baseUrl + authString + loginString, user);
+      const result = await loginUser(
+        `${baseUrl}/${authString}/${loginString}`,
+        user
+      );
       console.log(result);
 
       if (result.success && localStorage.getItem("accessToken")) {
