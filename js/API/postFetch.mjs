@@ -11,7 +11,6 @@ export async function postFetch() {
       `${baseUrl}${postUrl}${authorInclude}`,
       "GET"
     );
-    // console.log(postArray);
     return postArray;
   } catch (error) {
     console.log("Error loading posts:", error);

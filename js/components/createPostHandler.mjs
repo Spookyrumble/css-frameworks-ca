@@ -1,6 +1,20 @@
 import { apiFetch } from "../utils.js";
 import { baseUrl, postUrl } from "../API/urls.js";
 
+/**
+ * Sets up an event listener for a form to create a post entry.
+ * Once the form is submitted, this function will collect the data,
+ * send a POST request to create a new post, reset the form,
+ * and then refresh the page after a short delay.
+ *
+ * @function createPostEntry
+ *
+ * @example
+ *
+ * // Given a form with ID "createForm" and relevant input fields,
+ * // this function will handle the post creation process.
+ * createPostEntry();
+ */
 export function createPostEntry() {
   const createPostForm = document.getElementById("createForm");
 
@@ -26,6 +40,6 @@ export function createPostEntry() {
     createPostForm.reset();
     setTimeout(function () {
       location.reload();
-    }, 800);
+    }, 400);
   });
 }

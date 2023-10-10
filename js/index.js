@@ -132,7 +132,14 @@ async function loginUser(url, data) {
 checkboxValidation();
 
 /**
- * Listens for submit event on the form and calls the createNewUser function or loginUser function
+ * Attaches an event listener to the login/registration form.
+ *
+ * The function checks if the "new user" checkbox is checked on form submission. If it's checked,
+ * the function attempts to create a new user. Otherwise, it attempts to log the user in.
+ *
+ * After a successful login, the function redirects the user to their profile page. If the login
+ * is unsuccessful, the function alerts the user that the credentials are either wrong or that
+ * the user does not exist.
  */
 function formListener() {
   const newUserToggle = document.getElementById("newUserCheckBox");
@@ -161,22 +168,3 @@ function formListener() {
   });
 }
 formListener();
-
-// Listen for submit event on the form and call the registerUser function or loginUser function
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   if (newUserToggle.checked) {
-//     createNewUser();
-//     console.log("Registration successful");
-//   } else {
-//     const user = grabsUserData();
-//     loginUser(API_BASE_URL + loginString, user);
-//     console.log("Logging in user", "Token stored in local storage");
-//     if (localStorage.getItem("accessToken")) {
-//       window.location.href = "/profile";
-//     } else {
-//       console.log("user does not exist or credentials are wrong");
-//       alert("user does not exist or credentials are wrong");
-//     }
-//   }
-// });

@@ -1,4 +1,3 @@
-import { API_BASE_URL } from "../utils.js";
 import { postFetch } from "../API/postFetch.mjs";
 import { apiFetch } from "../utils.js";
 import { fetchUsersPosts } from "../API/userPostFetch.mjs";
@@ -10,6 +9,28 @@ import { showModal } from "./editPostHandler.mjs";
 const userId = localStorage.getItem("userId");
 let followingData = null;
 
+/**
+ * Asynchronously fetches and loads the list of users being followed by the currently logged-in user.
+ *
+ * This function retrieves the profiles of users that the logged-in user is following and updates
+ * the global `followingData` array with this list. If an error occurs during the fetch, the error
+ * will be logged to the console.
+ *
+ * Dependencies:
+ * - Relies on the global `followingData` array to store the list of users.
+ * - Utilizes the `apiFetch` function for API interactions.
+ *
+ * @returns {Promise<void>} A promise that resolves when the data has been loaded, but returns no value.
+ *
+ * @example
+ * loadFollowingData()
+ *   .then(() => {
+ *     console.log('Following data loaded successfully.');
+ *   })
+ *   .catch(err => {
+ *     console.error('Failed to load following data:', err);
+ *   });
+ */
 async function loadFollowingData() {
   try {
     const response = await apiFetch(
@@ -22,6 +43,26 @@ async function loadFollowingData() {
   }
 }
 
+/**
+ * Determines if the currently logged-in user is following the target user.
+ *
+ * This function checks the global `followingData` array to determine if
+ * the target user is among those being followed by the currently logged-in user.
+ *
+ * Dependencies:
+ * - Depends on the global `followingData` array.
+ *
+ * @param {string} targetUsername - The username of the target user to check against.
+ * @returns {boolean} Returns true if the logged-in user is following the target user, otherwise false.
+ *
+ * @example
+ * const result = isFollowing('JaneDoe');
+ * if (result) {
+ *   console.log('The logged-in user is following JaneDoe.');
+ * } else {
+ *   console.log('The logged-in user is not following JaneDoe.');
+ * }
+ */
 function isFollowing(targetUsername) {
   return (
     followingData &&
@@ -31,33 +72,42 @@ function isFollowing(targetUsername) {
 
 loadFollowingData();
 
-/**
- * Creates and appends a post element to the "feedContainer" DOM element.
- *
- * @param {Object} post - The post data.
- * @param {Object} post.author - The post author's data.
- * @param {string} post.author.name - The name of the post author.
- * @param {string} [post.author.avatar] - The avatar URL of the post author. Defaults to a generic avatar if not provided.
- * @param {string} post.title - The title of the post.
- * @param {string} post.body - The body content of the post.
- * @param {string} [post.media] - The media URL for the post (e.g., image). Optional.
- *
- * @example
- * const post = {
- *   author: {
- *     name: "John Doe",
- *     avatar: "https://example.com/avatar.jpg"
- *   },
- *   title: "Sample Post",
- *   body: "This is a sample post content.",
- *   media: "https://example.com/sample.jpg"
- * };
- *
- * createPost(post);
- */
 const feedContainer = document.getElementById("feedContainer");
 const loader = document.querySelector(".loader");
 
+/**
+ * Creates and renders a single post element based on provided post data.
+ *
+ * This function creates a DOM structure for a post that includes the author's avatar,
+ * name, post title, post body, and associated media. It also provides functionality
+ * for following or unfollowing the post's author, and for editing and deleting the post
+ * if the logged-in user is the post's author.
+ *
+ * Dependencies:
+ * - Depends on several global variables and functions including but not limited to
+ *   `loader`, `feedContainer`, `isFollowing`, `showModal`, `deletePost`, and `apiFetch`.
+ *
+ * @param {Object} post - A single post data object.
+ * @param {Object} post.author - The author of the post.
+ * @param {string} post.author.name - The name of the post author.
+ * @param {string} post.author.avatar - The avatar URL of the post author.
+ * @param {string} post.id - The ID of the post.
+ * @param {string} post.title - The title of the post.
+ * @param {string} post.body - The body content of the post.
+ * @param {string} [post.media] - The media URL associated with the post.
+ *
+ * @throws Will throw an error if there's an issue creating or appending any of the post elements.
+ *
+ * @example
+ * const postData = {
+ *   author: { name: 'JohnDoe', avatar: 'https://example.com/john.jpg' },
+ *   id: '1234',
+ *   title: 'Sample Post',
+ *   body: 'This is a sample post body.',
+ *   media: 'https://example.com/image.jpg'
+ * };
+ * createPost(postData);  // Renders the post.
+ */
 function createPost(post) {
   loader.classList.add("d-none");
   const feedBox = document.createElement("div");
@@ -192,14 +242,49 @@ function createPost(post) {
   feedContainer.appendChild(feedBox);
 }
 
+/**
+ * Iteratively creates and renders individual post elements based on an array of post data.
+ *
+ * Dependencies:
+ * - Depends on the `createPost` function to render each individual post.
+ *
+ * @param {Array<Object>} posts - An array containing post data objects to be rendered.
+ * @returns {Promise<void>} A Promise that resolves when all posts have been successfully rendered.
+ *
+ * @throws Will throw an error if there's an issue rendering any of the individual posts.
+ *
+ * @example
+ * const postDataArray = [
+ *   { id: 1, title: 'First Post', content: 'This is the first post.' },
+ *   { id: 2, title: 'Second Post', content: 'This is the second post.' }
+ * ];
+ * await createPosts(postDataArray);  // Renders both posts.
+ */
 export async function createPosts(posts) {
   for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
     createPost(post);
   }
 }
-// const loader = document.querySelector(".loader");
 
+/**
+ * Builds and populates the feed with post data.
+ * If filtered data is provided, the feed is built using it; otherwise, the feed is populated with all posts.
+ *
+ * Dependencies:
+ * - Assumes the presence of a `loader` and `feedContainer` DOM element.
+ * - Depends on the `postFetch` function to retrieve all posts.
+ * - Depends on the `createPosts` function to create and render posts based on provided data.
+ *
+ * @param {Array<Object>} [filteredData] - An optional array of post data to populate the feed with.
+ *                                        If not provided, all posts are fetched and used.
+ *
+ * @example
+ * const latestPosts = [{...}, {...}, {...}];
+ * buildFeed(latestPosts); // Populates the feed with the provided latest posts.
+ *
+ * buildFeed(); // Fetches all posts and populates the feed.
+ */
 export async function buildFeed(filteredData) {
   if (filteredData) {
     loader.classList.remove("d-none");
@@ -212,11 +297,42 @@ export async function buildFeed(filteredData) {
   }
 }
 
+/**
+ * Builds and populates the feed with posts specific to a given user.
+ *
+ * Dependencies:
+ * - Depends on the `fetchUsersPosts` function to retrieve posts of a specific user.
+ * - Depends on the `createPosts` function to create and render posts based on provided data.
+ *
+ * @param {Object} user - The user object, typically containing at least user identification details.
+ * @returns {Promise<void>} A Promise that resolves when the feed has been built.
+ *
+ * @example
+ * const currentUser = { id: 123, name: 'John Doe' };
+ * await buildUserFeed(currentUser); // Populates the feed with posts specific to 'John Doe'.
+ */
 export async function buildUserFeed(user) {
   const userPostData = await fetchUsersPosts(user);
   createPosts(userPostData);
 }
 
+/**
+ * Builds and renders a single post based on a specific post ID present in the URL query string.
+ *
+ * Dependencies:
+ * - Depends on the `apiFetch` function to retrieve the specific post using its ID.
+ * - Depends on the `loadProfile` function to load the author's profile.
+ * - Depends on the `createPost` function to create and render the post based on the retrieved data.
+ *
+ * Assumptions:
+ * - It's assumed that the URL contains a query parameter named 'id' which corresponds to the post ID.
+ *
+ * @returns {Promise<void>} A Promise that resolves when the post has been built and rendered.
+ *
+ * @example
+ * // Assuming the current URL is 'https://example.com/post.html?id=123'
+ * await buildSinglePost(); // Fetches post with ID 123 and renders it.
+ */
 export async function buildSinglePost() {
   const queryString = document.location.search;
   const params = new URLSearchParams(queryString);

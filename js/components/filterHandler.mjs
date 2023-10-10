@@ -12,9 +12,25 @@ import { fetchAllThePosts } from "../API/fetchAllThePosts.mjs";
 const userId = localStorage.getItem("userId");
 const loader = document.querySelector(".loader");
 
+/**
+ * Sets up an event listener on a dropdown filter to sort and display posts based on the selected filter.
+ * When the dropdown's value changes, this function fetches and filters posts according to the chosen criterion.
+ * The potential filtering options include:
+ * - "Newest": Sorting posts from the newest to the oldest.
+ * - "Oldest": Sorting posts from the oldest to the newest.
+ * - "Friends": Displaying only posts authored by friends.
+ * If no specific filter is chosen or an unknown filter value is encountered, all posts are shown.
+ * After fetching and processing, the feed is populated using the `buildFeed` function.
+ *
+ * Dependencies:
+ * - Relies on global variables and external functions: `apiFetch`, `baseUrl`, `profileUrl`, `postUrl`, `followingInclude`, `authorInclude`, and `buildFeed`.
+ *
+ * @async
+ * @example
+ * await feedFilter(); // Activates the filter functionality on the dropdown and waits for user interactions.
+ */
 export async function feedFilter() {
   const dropdownFilter = document.getElementById("sortBy");
-
   dropdownFilter.addEventListener("change", async () => {
     const value = dropdownFilter.value;
     loader.classList.remove("d-none");
@@ -24,50 +40,34 @@ export async function feedFilter() {
         `${baseUrl}${profileUrl}/${userId}${followingInclude}`,
         "GET"
       );
-
       const allPosts = await fetchAllThePosts();
-      // console.log(allPosts);
-
       const newestPosts = await apiFetch(
         `${baseUrl}${postUrl}${authorInclude}`,
         "GET"
       );
-
-      const friendPosts = await apiFetch(
-        `${baseUrl}${postUrl}/following${authorInclude}`,
-        "GET"
-      );
-      // console.log(friendPosts);
-
       let sortedArray = [];
       switch (value) {
         case "Newest":
           sortedArray = [...newestPosts].sort(
             (a, b) => new Date(b.created) - new Date(a.created)
           );
-
+          loader.classList.remove("d-none");
           buildFeed(sortedArray);
           break;
         case "Oldest":
           sortedArray = [...newestPosts].sort(
             (a, b) => new Date(a.created) - new Date(b.created)
           );
+          loader.classList.remove("d-none");
           buildFeed(sortedArray);
           break;
         case "Friends":
-          // sortedArray = [...friendPosts];
-          // buildFeed(sortedArray);
-
-          // Extract list of friend names
           const friendNames = posts.following.map((friend) => friend.name);
           console.log(friendNames);
-
-          // Filter posts written by friends
           sortedArray = allPosts.filter((post) =>
             friendNames.includes(post.author.name)
           );
           loader.classList.remove("d-none");
-
           buildFeed(sortedArray);
           break;
         default:
