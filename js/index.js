@@ -97,12 +97,30 @@ function grabsUserData() {
 }
 
 /**
- * USER AUTHENTICATION FUNCTION
- * @param {string} url
- * @param {any} data
- * @returns json or error and stores the access token in local storage
- * ```js
- * loginUser(API_BASE_URL + loginString, user);
+ * Asynchronously logs a user in by sending a POST request with provided user data.
+ *
+ * Upon successful login, the function stores the accessToken and user's name (which is assumed to be the user's ID here)
+ * into the local storage. If the login fails, it will return a success flag set to `false` and log an error.
+ *
+ * @async
+ * @function
+ * @param {string} url - The endpoint URL for logging in.
+ * @param {Object} data - The user data for login.
+ * @param {string} data.email - The user's email.
+ * @param {string} data.password - The user's password.
+ * @returns {Promise<Object>} Returns an object with a `success` flag and, upon successful login, a `data` object.
+ * @throws Will log an error if there's an issue with the fetch request or the provided data.
+ *
+ * @example
+ * loginUser("https://api.example.com/login", { email: "john@example.com", password: "123456" })
+ *   .then(result => {
+ *     if (result.success) {
+ *       console.log("Login successful!", result.data);
+ *     } else {
+ *       console.error("Login failed");
+ *     }
+ *   })
+ *   .catch(error => console.error("Error logging in:", error));
  */
 async function loginUser(url, data) {
   try {
