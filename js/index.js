@@ -1,31 +1,30 @@
+import { apiFetch } from "./utils.js";
 import { checkboxValidation } from "./utils.js";
 import {
   linkAuthorizations,
   navListeners,
   logoListener,
 } from "./components/navLinks.mjs";
+import { baseUrl } from "./API/urls.js";
 
 navListeners();
 // logoListener();
 linkAuthorizations();
 
-export const API_BASE_URL = "https://api.noroff.dev/api/v1/social/";
-const authString = "auth/";
-const registerString = "register/";
-const loginString = "login/";
+// export const API_BASE_URL = "https://api.noroff.dev/api/v1/social/";
+const authString = "auth";
+const registerString = "register";
+const loginString = "login";
 
 // ADDS THE FULL NAME INPUT WHEN NEW USER CHECKBOX IS CHECKED AND ENABLES THE REGISTER BUTTON
 const newUserToggle = document.getElementById("newUserCheckBox");
-const newUserBtn = document.getElementById("registerBtn");
 const newUserInput = document.getElementById("newUserInput");
 
 newUserToggle.addEventListener("change", function () {
   if (newUserToggle.checked) {
-    newUserInput.classList.remove("d-none"),
-      newUserBtn.removeAttribute("disabled");
+    newUserInput.classList.remove("d-none");
   } else if (!newUserToggle.checked) {
     newUserInput.classList.add("d-none");
-    newUserBtn.disabled = true;
   }
 });
 
@@ -36,39 +35,49 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 
 /**
- * Creates a new user object and posts it to the API
+ * Asynchronously creates a new user.
+ *
+ * This function gathers data from form input fields (assumed to be globally available)
+ * and sends a POST request to create a new user. If the user's name contains any spaces,
+ * they are replaced with underscores before being sent to the server.
+ *
+ * @async
+ * @function
+ * @returns {void}
+ * @throws Will throw an error if the fetch request encounters any issues.
+ *
+ * @example
+ * createNewUser()
+ *   .then(() => console.log('User created successfully'))
+ *   .catch(error => console.error('Error creating user:', error));
  */
-function createNewUser() {
+async function createNewUser() {
   const userName = nameInput.value;
-
   const userEmail = emailInput.value;
   const userPassword = passwordInput.value;
 
   const userObject = {
-    name: userName,
     email: userEmail,
+    name: userName.replace(/\s+/g, "_"),
     password: userPassword,
   };
 
-  fetch(API_BASE_URL + authString + registerString, {
-    name: userName,
-    email: userEmail,
-    password: userPassword,
-  });
   console.log(userObject);
 
-  fetch(API_BASE_URL + registerString, {
-    method: "POST",
-    body: JSON.stringify(userObject),
-    headers: {
-      "content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((json) => console.log(json))
-    .catch((error) => {
-      console.error("Registration failed:", error);
+  try {
+    const response = await fetch(`${baseUrl}/${authString}/${registerString}`, {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify(userObject),
     });
+
+    const json = await response.json();
+    console.log(json);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 /**
@@ -118,12 +127,6 @@ async function loginUser(url, data) {
       console.error("Login failed:", response.status);
       return { success: false };
     }
-
-    // const json = await response.json();
-    // const accessToken = json.accessToken;
-    // localStorage.setItem("accessToken", accessToken);
-    // console.log(json);
-    // return json;
   } catch (error) {
     console.log("There was an error authenticating the user", error);
   }
@@ -151,10 +154,7 @@ function formListener() {
     } else {
       const user = grabsUserData();
       console.log(user);
-      const result = await loginUser(
-        API_BASE_URL + authString + loginString,
-        user
-      );
+      const result = await loginUser(baseUrl + authString + loginString, user);
       console.log(result);
 
       if (result.success && localStorage.getItem("accessToken")) {
