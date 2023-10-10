@@ -13,7 +13,7 @@
     <header>
       <div class="bs-component mb-5">
         <nav class="navbar navbar-expand-lg navbar bgGradient">
-          <a class="navbar-brand text-light m-2" href="/index.html"
+          <a id="LogoLink" class="navbar-brand text-light m-2" disabled
             ><img class="logoSizing" src="../images/logo/logo_dark.png" alt="connotation logo"
           /></a>
           <button
@@ -63,15 +63,15 @@
           <div id="profileContainer">
             <h2 id="nameContainer" class="my-sm-2">Loading..</h2>
           </div>
-          <div class="d-flex flex-column">
+          <div class="d-flex">
             <!-- <button class="btn btn-primary my-1">New post</button> -->
-            <button id="profileFollowBtn" class="btn btn-primary my-1">Follow</button>
+            <!-- <button id="profileFollowBtn" class="btn btn-primary my-3">Follow</button> -->
           </div>
         </div>
         <div class="col-12">
           <div id="imageContainer" class="customProfilePicCont d-flex overflow-hidden">
           </div>
-          <p class="p-sm-2">A passionate explorer, blending curiosity with creativity. An avid learner, traveler, and music enthusiast, always seeking the next adventure and tune to groove to</p>
+          <p class="p-sm-2">This would be a profile bio!</p>
         </div>
         <div class="row text-center border-top border-secondary p-1">
           <div class="col-4">
@@ -95,6 +95,7 @@
       </div>
       <div class="container shadow">
         <h3 id="dynamicFeedTitle" class="text-center my-lg-4 p-1">Recent posts</h3>
+        <span class="loader"></span>
         <div id="feedContainer" class="row mb-5 border-bottom p-2"></div>
           <!-- <div>
             <div class="d-flex w-100 justify-content-between">

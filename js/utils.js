@@ -1,12 +1,3 @@
-export const API_BASE_URL = "https://api.noroff.dev/api/v1/social";
-
-function validateEmail(email) {
-  const regEx = /\S+@\S+\.\S+/;
-  const patternMatches = regEx.test(email);
-  return patternMatches;
-}
-export { validateEmail };
-
 /**
  * Listens for change event on the checkbox and adds the full name input when checked
  */
@@ -25,7 +16,6 @@ function checkboxValidation() {
     }
   });
 }
-
 export { checkboxValidation };
 
 /**
@@ -38,7 +28,19 @@ function logOut() {
 
 export { logOut };
 
-//Reusable fetch function
+/**
+ * Makes an asynchronous HTTP request to a specified URL with the provided method and body.
+ *
+ * This function uses the Fetch API to make an HTTP request. It uses an access token from the
+ * local storage as an authorization header for the request, if available. It also sets the
+ * "Content-Type" header to "application/json".
+ *
+ * @param {string} url - The URL to make the request to.
+ * @param {string} fetchMethod - The HTTP method for the request (e.g., "GET", "POST").
+ * @param {Object} [body=null] - The request payload as a plain object. It is stringified before sending.
+ * @returns {Promise<Object>} - Returns a promise that resolves with the JSON response of the request.
+ * @throws Will throw an error if the fetch request encounters a problem.
+ */
 async function apiFetch(url, fetchMethod, body = null) {
   try {
     const token = localStorage.getItem("accessToken");

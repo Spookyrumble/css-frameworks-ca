@@ -1,13 +1,18 @@
 import { checkboxValidation } from "./utils.js";
-import { linkAuthorizations } from "./components/navLinks.mjs";
+import {
+  linkAuthorizations,
+  navListeners,
+  logoListener,
+} from "./components/navLinks.mjs";
+
+navListeners();
+// logoListener();
+linkAuthorizations();
+
 export const API_BASE_URL = "https://api.noroff.dev/api/v1/social/";
 const authString = "auth/";
 const registerString = "register/";
 const loginString = "login/";
-
-export const API_BASE_URL = "https://api.noroff.dev/api/v1/social/auth/";
-const registerString = "register";
-const loginString = "login";
 
 // ADDS THE FULL NAME INPUT WHEN NEW USER CHECKBOX IS CHECKED AND ENABLES THE REGISTER BUTTON
 const newUserToggle = document.getElementById("newUserCheckBox");
@@ -30,16 +35,6 @@ const nameInput = document.getElementById("fullName");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 
-
-linkAuthorizations();
-
-/**
- * Creates a new user object and posts it to the API.
- * removes all whitespace from the name input
- */
-function createNewUser() {
-  const userName = nameInput.value.replace(/\s+/g, "");
-
 /**
  * Creates a new user object and posts it to the API
  */
@@ -50,7 +45,6 @@ function createNewUser() {
   const userPassword = passwordInput.value;
 
   const userObject = {
-
     name: userName.toLowerCase(),
     email: userEmail,
     password: userPassword,
@@ -60,11 +54,10 @@ function createNewUser() {
     name: userName,
     email: userEmail,
     password: userPassword,
-  };
+  });
   console.log(userObject);
 
   fetch(API_BASE_URL + registerString, {
-
     method: "POST",
     body: JSON.stringify(userObject),
     headers: {
@@ -126,22 +119,27 @@ async function loginUser(url, data) {
       return { success: false };
     }
 
-    const json = await response.json();
-    const accessToken = json.accessToken;
-    localStorage.setItem("accessToken", accessToken);
-    console.log(json);
-    return json;
-
+    // const json = await response.json();
+    // const accessToken = json.accessToken;
+    // localStorage.setItem("accessToken", accessToken);
+    // console.log(json);
+    // return json;
   } catch (error) {
     console.log("There was an error authenticating the user", error);
   }
 }
 
-
 checkboxValidation();
 
 /**
- * Listens for submit event on the form and calls the createNewUser function or loginUser function
+ * Attaches an event listener to the login/registration form.
+ *
+ * The function checks if the "new user" checkbox is checked on form submission. If it's checked,
+ * the function attempts to create a new user. Otherwise, it attempts to log the user in.
+ *
+ * After a successful login, the function redirects the user to their profile page. If the login
+ * is unsuccessful, the function alerts the user that the credentials are either wrong or that
+ * the user does not exist.
  */
 function formListener() {
   const newUserToggle = document.getElementById("newUserCheckBox");
@@ -170,23 +168,3 @@ function formListener() {
   });
 }
 formListener();
-
-// Listen for submit event on the form and call the registerUser function or loginUser function
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (newUserToggle.checked) {
-    createNewUser();
-    console.log("Registration successful");
-  } else {
-    const user = grabsUserData();
-    loginUser(API_BASE_URL + loginString, user);
-    console.log("Logging in user", "Token stored in local storage");
-    if (localStorage.getItem("accessToken")) {
-      window.location.href = "/profile";
-    } else {
-      console.log("user does not exist or credentials are wrong");
-      alert("user does not exist or credentials are wrong");
-    }
-  }
-});
-

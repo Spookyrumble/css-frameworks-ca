@@ -1,38 +1,54 @@
 import { logOut } from "../utils.js";
-/**
- * Manages the authorization for profile and feed navigation links, the search button, and the sign out button based on the presence of an access token.
- *
- * This function retrieves the navigation link elements for the profile and feed pages,
- * the search button element, and the sign out button element from the DOM.
- * It then checks for the presence of an access token in local storage.
- * If an access token is found, it removes the "disabled" class from the profile and feed links,
- * the sign out button, and the `disabled` attribute from the search button, effectively enabling them.
- *
- * @function
- * @export
- *
- * @example
- * // Call this function once to set up the authorization based interactions.
- * linkAuthorizations();
- */
+
+const logoLink = document.getElementById("logoLink");
 const profileLink = document.getElementById("profileNavLink");
 profileLink.style.cursor = "pointer";
 const feedLink = document.getElementById("feedNavLink");
 feedLink.style.cursor = "pointer";
-const searchBtn = document.getElementById("searchNavBtn");
 const signOut = document.getElementById("signOut");
 signOut.style.cursor = "pointer";
+const loggedInUser = localStorage.getItem("userId");
 
+/**
+ * Adjusts the authorization of certain links based on the presence of an access token in the local storage.
+ * If the access token is present, some links are enabled; otherwise, they remain disabled.
+ *
+ * Dependencies:
+ * - Assumes `localStorage` is available and can be queried for an "accessToken".
+ * - Assumes DOM elements with the variable names `profileLink`, `feedLink`, and `signOut` exist and represent specific links or buttons in the UI.
+ *
+ * @example
+ * linkAuthorizations(); // Checks for an access token and updates link authorizations accordingly.
+ */
 export function linkAuthorizations() {
   const token = localStorage.getItem("accessToken");
   if (token) {
     profileLink.classList.remove("disabled");
     feedLink.classList.remove("disabled");
     signOut.classList.remove("disabled");
-    searchBtn.removeAttribute("disabled");
   }
 }
 
+/**
+ * Adds a click event listener to the logo link that redirects the user to their profile page.
+ */
+function logoListener() {
+  logoLink.addEventListener("click", () => {
+    window.location.href = `/profile/index.html?id=${loggedInUser}`;
+  });
+}
+
+/**
+ * Attaches an event listener to the "Profile" navigation link.
+ * When the link is clicked, the browser is redirected to the profile page of the currently logged-in user.
+ *
+ * Dependencies:
+ * - Assumes a DOM element with the variable name `profileLink` exists and represents the "Profile" navigation link.
+ * - Uses the local storage to retrieve the ID of the currently logged-in user.
+ *
+ * @example
+ * navListeners(); // Binds the navigation functionality to the profile link.
+ */
 function navListeners() {
   profileLink.addEventListener("click", () => {
     const loggedInUser = localStorage.getItem("userId");
@@ -40,10 +56,20 @@ function navListeners() {
   });
 }
 
+/**
+ * Attaches an event listener to the "Sign Out" button.
+ * When the button is clicked, the `logOut` function is called to handle the user's sign-out process.
+ *
+ * Dependencies:
+ * - Relies on an external function: `logOut`.
+ *
+ * @example
+ * signOutListener(); // Binds the sign-out functionality to the button with the ID "signOut".
+ */
 function signOutListener() {
   const signOutBtn = document.querySelector("#signOut");
   signOutBtn.addEventListener("click", function () {
     logOut();
   });
 }
-export { navListeners, signOutListener };
+export { navListeners, signOutListener, logoListener };

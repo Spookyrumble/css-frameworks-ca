@@ -17,7 +17,7 @@
     <header>
       <div class="bs-component mb-5">
         <nav class="navbar navbar-expand-lg bgGradient">
-          <a class="navbar-brand text-light m-2" href="../index.html"
+          <a id="logoLink" class="navbar-brand text-light m-2" disabled
             ><img
               class="logoSizing"
               src="../images/logo/logo_dark.png"
@@ -56,7 +56,7 @@
                 >
               </li>
             </ul>
-            <form class="form d-flex my-2 my-lg-0">
+            <!-- <form class="form d-flex my-2 my-lg-0">
               <input
                 class="form-control mr-sm-2"
                 type="text"
@@ -65,7 +65,7 @@
               <button class="btn btn-light m-2 my-sm-0" type="submit">
                 Search
               </button>
-            </form>
+            </form> -->
           </div>
         </nav>
       </div>
@@ -74,48 +74,6 @@
       <h1 class="text-center">Connotation</h1>
       <div class="container-xl p-5">
         <div class="row">
-          <!-- <div class="col-lg-4 mb-5 shadow p-2">
-            <h2 class="visually-hidden">profile</h2>
-            <div class="d-flex">
-              <div class="d-flex mx-auto overflow-hidden">
-                <img
-                  class="img-fluid"
-                  src="../images/profilePics/iheb-ab-OBufvGMaBaQ-unsplash_dustin.jpg"
-                  alt="profile picture"
-                />
-              </div>
-            </div>
-            <a class="text-secondary" href="#"
-              ><small>Change photo</small><i class="bi bi-image ms-2"></i
-            ></a>
-            <h3 class="text-sm align-self-center my-4">Dustin Makebelieve</h3>
-            <div>
-              <p>
-                A passionate explorer, blending curiosity with creativity. An
-                avid learner, traveler, and music enthusiast, always seeking the
-                next adventure and tune to groove to.
-              </p>
-            </div>
-            <div class="container">
-              <div class="d-flex justify-content-center">
-                <table class="p-2">
-                  <thead class="text-center">
-                    <th class="px-3">Posts</th>
-                    <th class="px-3">Following</th>
-                    <th class="px-3">Followers</th>
-                  </thead>
-                  <tbody class="text-center">
-                    <td class="px-3">32</td>
-                    <td class="px-3">282</td>
-                    <td class="px-3">Mom</td>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="text-center">
-              <button class="btn btn-secondary mt-4">Add Friend</button>
-            </div>
-          </div> -->
           <div class="col-lg-6 mb-5 shadow p-2">
             <h4>Friends</h4>
             <a href="#"
@@ -150,12 +108,13 @@
             >
           </div>
           <div class="col-lg-6 shadow mb-5 p-2">
-            <form>
+            <form id="createForm">
               <h4 class="text-center p-2">Create post</h4>
               <label for="title">Title</label>
               <input
                 class="form-control mb-2"
                 id="title"
+                name="title"
                 type="text"
                 required
                 placeholder="(Required)"
@@ -164,6 +123,7 @@
               <textarea
                 class="form-control mb-2"
                 id="body"
+                name="body"
                 rows="3"
                 placeholder="(Optional)"
               ></textarea>
@@ -172,149 +132,32 @@
                 class="form-control"
                 type="text"
                 id="media"
-                placeholder="(Optional) Must be valid image URL"
+                name="media"
+                placeholder="(Optional) Must be valid image URL address"
               />
               <div class="d-flex justify-content-end mt-2">
                 <button class="btn btn-dark px-4 text-light">Post</button>
               </div>
             </form>
           </div>
-          <div id="feedContainer" class="col-lg-12 shadow p-2">
+          <form class="form-group text-end my-5">
             <h4 class="text-center">Feed</h4>
-            <div>
-              <div class="form-group text-end my-5">
-                <label for="sortBy">Filter</label>
-                <select class="form-control-sm" id="sortBy">
-                  <!-- <option>All</option> -->
-                  <option>Newest</option>
-                  <option>Oldest</option>
-                  <option>Friends</option>
-                </select>
-                <label for="search">Search</label>
-                <input type="text" id="search" />
-                <button class="btn btn-primary me-2">Go</button>
-              </div>
-            </div>
-            <!-- <div id="feedBox" class="row mb-5 border-bottom p-2">
-              <div id="nameContainer" class="d-flex w-100 justify-content-between">
-                <div class="d-flex">
-                  <img
-                    class="customThumbnail"
-                    src="/images/profilePics/reza-biazar-eSjmZW97cH8-unsplash_john.jpg"
-                    alt="john's profile picture"
-                  />
-                  <p class="mx-2 text-dark">
-                    John Johnson <br />
-                    <span class="text-primary"><small>1 hour ago</small></span>
-                  </p>
-                </div>
-                <div>
-                  <a href="#"
-                    ><small><span>Follow</span></small></a
-                  >
-                </div>
-              </div>
-              <div id="titleBox">
-                <h5 class="mt-2">A feed title</h5>
-              </div>
-              <div id="bodyBox">
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui
-                  iste sapiente expedita rerum temporibus aperiam tenetur,
-                  adipisci tempore sunt voluptas.
-                </p>
-              </div>
-              <div id="mediaBox"></div>
-            </div>
-            <div class="row mb-5 border-bottom p-2">
-              <div class="d-flex w-100 justify-content-between">
-                <div class="d-flex">
-                  <img
-                    class="customThumbnail"
-                    src="/images/profilePics/ben-o-bro-C5XyLljkMrY-unsplash_fred.jpg"
-                    alt="fred's profile picture"
-                  />
-                  <p class="mx-2 text-dark">
-                    Fred Freeman<br />
-                    <span class="text-primary"><small>1 hour ago</small></span>
-                  </p>
-                </div>
-                <div>
-                  <a href="#"
-                    ><small><span>Unfollow</span></small></a
-                  >
-                </div>
-              </div>
-              <div>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui
-                  iste sapiente expedita rerum temporibus aperiam tenetur,
-                  adipisci tempore sunt voluptas.
-                </p>
-              </div>
-            </div>
-            <div class="row mb-5 border-bottom p-2">
-              <div class="d-flex w-100 justify-content-between">
-                <div class="d-flex">
-                  <img
-                    class="customThumbnail"
-                    src="/images/profilePics/michael-dam-mEZ3PoFGs_k-unsplash_may.jpg"
-                    alt="may's profile picture"
-                  />
-                  <p class="mx-2 text-dark">
-                    May Alexander<br />
-                    <span class="text-primary"><small>3 hours ago</small></span>
-                  </p>
-                </div>
-                <div>
-                  <a href="#"
-                    ><small><span>Unfollow</span></small></a
-                  >
-                </div>
-              </div>
-              <div>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui
-                  iste sapiente expedita rerum temporibus aperiam tenetur,
-                  adipisci tempore sunt voluptas.
-                </p>
-              </div>
-              <div>
-                <img
-                  class="img-fluid"
-                  src="/images/leonard-cotte-R5scocnOOdM-unsplash_paris.jpg"
-                  alt="street in paris"
-                />
-              </div>
-            </div>
-            <div class="row mb-5 border-bottom p-2">
-              <div class="d-flex w-100 justify-content-between">
-                <div class="d-flex">
-                  <img
-                    class="customThumbnail"
-                    src="/images/profilePics/nora-hutton-tCJ44OIqceU-unsplash_alice.jpg"
-                    alt="profile picture of alice"
-                  />
-                  <p class="mx-2 text-dark">
-                    Alice Hansson<br />
-                    <span class="text-primary"><small>4 hours ago</small></span>
-                  </p>
-                </div>
-                <div>
-                  <a href="#"
-                    ><small><span>Follow</span></small></a
-                  >
-                </div>
-              </div>
-              <div>
-                <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui
-                  iste sapiente expedita rerum temporibus aperiam tenetur,
-                  adipisci tempore sunt voluptas.
-                </p>
-              </div>
-            </div> -->
-          </div>
+            <label for="sortBy">Filter by</label>
+            <select class="form-control-sm" id="sortBy">
+              <option>Newest</option>
+              <option>Oldest</option>
+              <option>Friends</option>
+            </select>
+            <label class="ms-2" for="search">Search Feed</label>
+            <input
+              class="border-solid"
+              type="text"
+              id="search"
+              placeholder="Users & Titles"
+            />
+          </form>
+          <span class="loader"></span>
+          <div id="feedContainer" class="col-lg-12 shadow p-2"></div>
         </div>
       </div>
     </main>

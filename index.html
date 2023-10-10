@@ -11,14 +11,14 @@
   </head>
   <body>
     <header>
-      <div class="bs-component mb-5">
+      <div class="bs-component mb-5 d-fixed">
         <nav class="navbar navbar-expand-lg navbar bgGradient">
-          <a class="navbar-brand text-light m-2" href="/index.html"
-            ><img
-              class="logoSizing"
-              src="images/logo/logo_dark.png"
-              alt="connotation logo"
-          /></a>
+          <!-- <a id="logoLink" class="navbar-brand text-light m-2" disabled -->
+          ><img
+            class="logoSizing"
+            src="images/logo/logo_dark.png"
+            alt="connotation logo"
+          />
           <button
             class="navbar-toggler collapsed"
             type="button"
@@ -36,10 +36,7 @@
           >
             <ul class="navbar-nav text-center mr-auto">
               <li class="nav-item">
-                <a
-                  id="profileNavLink"
-                  class="nav-link text-light disabled"
-                  href="/profile"
+                <a id="profileNavLink" class="nav-link text-light disabled"
                   >Profile</a
                 >
               </li>
@@ -57,21 +54,6 @@
                 >
               </li>
             </ul>
-            <form class="form d-flex my-2 my-lg-0">
-              <input
-                class="form-control mr-sm-2"
-                type="text"
-                placeholder="Search"
-              />
-              <button
-                id="searchNavBtn"
-                class="btn btn-light m-2 my-sm-0"
-                type="submit"
-                disabled
-              >
-                Search
-              </button>
-            </form>
           </div>
         </nav>
       </div>
@@ -124,7 +106,6 @@
               >
             </div>
             <div id="newUserInput" class="mb-3 d-none">
-
               <label for="fullName" class="form-label">Full Name</label>
 
               <input
@@ -138,14 +119,6 @@
             <div class="d-flex justify-content-between mx-sm-5">
               <button id="loginBtn" type="submit" class="btn btn-primary px-4">
                 Login
-              </button>
-              <button
-                id="registerBtn"
-                type="submit"
-                class="btn btn-primary"
-                disabled
-              >
-                Register
               </button>
             </div>
           </form>
