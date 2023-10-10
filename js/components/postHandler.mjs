@@ -5,6 +5,7 @@ import { fetchUsersPosts } from "../API/userPostFetch.mjs";
 import { authorInclude, baseUrl, profileUrl } from "../API/urls.js";
 import { loadProfile } from "./profileHandler.mjs";
 import { deletePost } from "./deleteHandler.mjs";
+import { showModal } from "./editPostHandler.mjs";
 
 const userId = localStorage.getItem("userId");
 let followingData = null;
@@ -55,7 +56,10 @@ loadFollowingData();
  * createPost(post);
  */
 const feedContainer = document.getElementById("feedContainer");
+const loader = document.querySelector(".loader");
+
 function createPost(post) {
+  loader.classList.add("d-none");
   const feedBox = document.createElement("div");
   feedBox.classList.add("row", "mb-5", "border-bottom", "p-2");
 
@@ -90,7 +94,7 @@ function createPost(post) {
   const followUnfollowBox = document.createElement("div");
   followUnfollowBox.classList.add("d-flex", "flex-column", "text-end");
   const followUnfollowLink = document.createElement("a");
-  followUnfollowLink.href = "#";
+  followUnfollowLink.classList.add("clickableLink");
   const smallElement = document.createElement("small");
   const spanElement = document.createElement("span");
   const follower = isFollowing(post.author.name);
@@ -103,29 +107,22 @@ function createPost(post) {
     followUnfollowLink.style.display = "none";
     const editBtn = document.createElement("a");
     editBtn.innerText = "Edit";
-    editBtn.dataset.bsToggle = "modal";
-    editBtn.dataset.bsTarget = "#editModal";
-    editBtn.href = "#";
-    editBtn.classList.add("my-1");
+    editBtn.id = "showModalBtn";
+    editBtn.classList.add("my-1", "clickableLink");
     followUnfollowBox.appendChild(editBtn);
     const deleteBtn = document.createElement("a");
     deleteBtn.innerText = "Delete";
-    deleteBtn.href = "#";
+    deleteBtn.classList.add("my-1", "clickableLink");
     followUnfollowBox.appendChild(deleteBtn);
 
+    editBtn.addEventListener("click", () => {
+      showModal(post.id, post.title, post.body, post.media);
+    });
     deleteBtn.addEventListener("click", () => {
       const deleted = deletePost(post.id);
       if (deleted) {
         feedBox.remove();
       }
-    });
-    editBtn.addEventListener("click", () => {
-      const openModal = new bootstrap.Modal(
-        document.getElementById("editModal")
-      );
-      editBtn.addEventListener("click", () => {
-        openModal.show();
-      });
     });
   }
 
@@ -201,9 +198,11 @@ export async function createPosts(posts) {
     createPost(post);
   }
 }
+// const loader = document.querySelector(".loader");
 
 export async function buildFeed(filteredData) {
   if (filteredData) {
+    loader.classList.remove("d-none");
     feedContainer.innerHTML = "";
     createPosts(filteredData);
   } else {

@@ -16,7 +16,7 @@ export function linkAuthorizations() {
     profileLink.classList.remove("disabled");
     feedLink.classList.remove("disabled");
     signOut.classList.remove("disabled");
-    searchBtn.removeAttribute("disabled");
+    // searchBtn.removeAttribute("disabled");
   }
 }
 

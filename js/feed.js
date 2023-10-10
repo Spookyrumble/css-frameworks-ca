@@ -19,6 +19,10 @@ dropdownFilter.addEventListener("change", () => {
 const searchInput = document.getElementById("search");
 
 searchInput.addEventListener("input", function () {
+  if (!this.value) {
+    buildFeed();
+    return;
+  }
   const searchTerm = this.value.toLowerCase();
   performSearch(searchTerm);
 });

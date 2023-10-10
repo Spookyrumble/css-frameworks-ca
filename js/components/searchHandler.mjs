@@ -1,8 +1,8 @@
-import { postFetch } from "../API/postFetch.mjs";
 import { buildFeed } from "./postHandler.mjs";
+import { fetchAllThePosts } from "../API/fetchAllThePosts.mjs";
 
 export async function performSearch(searchTerm) {
-  const allPosts = await postFetch();
+  const allPosts = await fetchAllThePosts();
 
   // Filter based on the search term
   const filteredPosts = allPosts.filter((post) => {

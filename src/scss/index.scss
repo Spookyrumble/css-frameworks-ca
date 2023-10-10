@@ -27,3 +27,70 @@
   cursor: default;
   color: gray;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 1000;
+}
+
+.modal {
+  position: fixed;
+  width: auto;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  z-index: 1001;
+}
+
+.text-shadow-white {
+  // text-shadow: 3px 3px 3px white;
+  text-shadow: 0 0 5px white, 0 0 10px $primary, 0 0 15px $secondary,
+    0 0 20px #00f;
+}
+
+.clickableLink {
+  cursor: pointer;
+  text-decoration: underline;
+  color: $secondary;
+}
+
+.loader {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  background-image: linear-gradient($primary 16px, transparent 0),
+    linear-gradient($secondary 16px, transparent 0),
+    linear-gradient($secondary 16px, transparent 0),
+    linear-gradient($primary 16px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-position: left top, left bottom, right top, right bottom;
+  animation: rotate 1s linear infinite;
+  margin: auto;
+}
+@keyframes rotate {
+  0% {
+    width: 64px;
+    height: 64px;
+    transform: rotate(0deg);
+  }
+  50% {
+    width: 30px;
+    height: 30px;
+    transform: rotate(180deg);
+  }
+  100% {
+    width: 64px;
+    height: 64px;
+    transform: rotate(360deg);
+  }
+}
