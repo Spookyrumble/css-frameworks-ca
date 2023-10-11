@@ -37,12 +37,12 @@ export async function feedFilter() {
 
     try {
       const posts = await apiFetch(
-        `${baseUrl}${profileUrl}/${userId}${followingInclude}`,
+        `${baseUrl}${profileUrl}/${userId}${followingInclude}&comment=true&reaction=true`,
         "GET"
       );
       const allPosts = await fetchAllThePosts();
       const newestPosts = await apiFetch(
-        `${baseUrl}${postUrl}${authorInclude}`,
+        `${baseUrl}${postUrl}${authorInclude}&comment=true&reaction=true`,
         "GET"
       );
       let sortedArray = [];

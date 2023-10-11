@@ -27,7 +27,7 @@ export async function fetchAllThePosts() {
 
   while (true) {
     const response = await apiFetch(
-      `${baseUrl}${postUrl}?limit=${limit}&offset=${offset}&_author=true&sort=created`,
+      `${baseUrl}${postUrl}?limit=${limit}&offset=${offset}&_author=true&sort=created&comment=true&reaction=true`,
       "GET"
     );
 

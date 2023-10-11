@@ -87,6 +87,5 @@ export function populateProfile(user) {
  */
 export async function loadProfile(userId) {
   const user = await fetchUserProfile(userId);
-  console.log(user);
   populateProfile(user);
 }

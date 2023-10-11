@@ -58,6 +58,8 @@ async function apiFetch(url, fetchMethod, body = null) {
 
     const response = await fetch(url, options);
     const json = await response.json();
+    console.log(json);
+
     return json;
   } catch (error) {
     console.log(error);
@@ -65,3 +67,13 @@ async function apiFetch(url, fetchMethod, body = null) {
 }
 
 export { apiFetch };
+
+export function formatDate(date) {
+  const dateObj = new Date(date);
+  const formattedDate = dateObj.toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+  return formattedDate;
+}

@@ -25,7 +25,6 @@ export async function fetchUserProfile(profile) {
       `${baseUrl}${profileUrl}/${profile}`,
       "GET"
     );
-    console.log(`Displaying user: ${userData.name}`);
     return userData;
   } catch (error) {
     console.log("Error loading user:", error);

@@ -5,6 +5,8 @@ import { authorInclude, baseUrl, profileUrl } from "../API/urls.js";
 import { loadProfile } from "./profileHandler.mjs";
 import { deletePost } from "./deleteHandler.mjs";
 import { showModal } from "./editPostHandler.mjs";
+import { formatDate } from "../utils.js";
+import { postComment } from "../API/postComment.mjs";
 
 const userId = localStorage.getItem("userId");
 let followingData = null;
@@ -111,7 +113,15 @@ const loader = document.querySelector(".loader");
 function createPost(post) {
   loader.classList.add("d-none");
   const feedBox = document.createElement("div");
-  feedBox.classList.add("row", "mb-5", "border-bottom", "p-2");
+  feedBox.classList.add(
+    "d-flex",
+    "gap-1",
+    "row",
+    "p-2",
+    "m-auto",
+    "my-5",
+    "border-top"
+  );
 
   const nameContainer = document.createElement("div");
   nameContainer.classList.add("d-flex", "w-100", "justify-content-between");
@@ -138,11 +148,16 @@ function createPost(post) {
   const nameLink = document.createElement("a");
   nameLink.href = `/profile/index.html?id=${post.author.name}`; // remember to correct this
   const nameBox = document.createElement("p");
-  nameBox.classList.add("mx-2", "text-dark");
+  nameBox.classList.add("mx-2", "text-dark", "fs-4");
   nameBox.innerText = post.author.name;
 
   const followUnfollowBox = document.createElement("div");
-  followUnfollowBox.classList.add("d-flex", "flex-column", "text-end");
+  followUnfollowBox.classList.add(
+    "d-flex",
+    "flex-column",
+    "border-top",
+    "text-end"
+  );
   const followUnfollowLink = document.createElement("a");
   followUnfollowLink.classList.add("clickableLink");
   const smallElement = document.createElement("small");
@@ -214,6 +229,41 @@ function createPost(post) {
   bodyText.classList.add("text-break");
   bodyText.innerText = post.body;
 
+  const commentButton = document.createElement("button");
+  commentButton.innerText = "Add Comment";
+  commentButton.classList.add("btn", "btn-primary", "mt-2", "col-4");
+
+  const commentInput = document.createElement("textarea");
+  commentInput.classList.add("form-control", "mt-2");
+  commentInput.placeholder = "Write your comment here...";
+  commentInput.setAttribute("name", "body");
+  commentInput.style.display = "none";
+
+  const sendButton = document.createElement("button");
+  sendButton.innerText = "Send";
+  sendButton.classList.add("btn", "btn-success", "mt-2", "col-4");
+  sendButton.style.display = "none";
+
+  sendButton.addEventListener("click", async (e) => {
+    const comment = {
+      body: commentInput.value,
+    };
+    postComment(post.id, comment);
+    sendButton.style.display = "none";
+    commentInput.style.display = "none";
+    commentInput.value = "";
+  });
+
+  commentButton.addEventListener("click", () => {
+    if (commentInput.style.display === "none") {
+      commentInput.style.display = "block";
+      sendButton.style.display = "block";
+    } else {
+      commentInput.style.display = "none";
+      sendButton.style.display = "none";
+    }
+  });
+
   if (!post.media == null || !post.media == "") {
     const mediaBox = document.createElement("div");
     mediaBox.classList.add("col-12", "col-md-6", "col-lg-4", "mb-3");
@@ -224,6 +274,18 @@ function createPost(post) {
     mediaBox.appendChild(media);
     feedBox.appendChild(mediaBox);
   }
+
+  const commentReactionBox = document.createElement("a");
+  commentReactionBox.href = `/profile/index.html?id=${post.id}`;
+  commentReactionBox.classList.add("d-flex", "justify-content-end", "gap-3");
+  const commentCount = document.createElement("p");
+  commentCount.classList.add("text-end", "text-muted", "mb-0");
+  commentCount.innerText = `${post._count.comments} Comments`;
+  const reactionCount = document.createElement("p");
+  reactionCount.classList.add("text-end", "text-muted", "mb-0");
+  reactionCount.innerText = `${post._count.reactions} Likes`;
+  commentReactionBox.appendChild(commentCount);
+  commentReactionBox.appendChild(reactionCount);
 
   feedBox.appendChild(nameContainer);
   nameContainer.appendChild(profileContainer);
@@ -240,6 +302,35 @@ function createPost(post) {
   feedBox.appendChild(bodyBox);
   bodyBox.appendChild(bodyText);
   feedContainer.appendChild(feedBox);
+  feedBox.append(commentReactionBox);
+  feedBox.append(commentButton);
+  feedBox.append(commentInput);
+  feedBox.append(sendButton);
+
+  if (post.comments) {
+    const commentBox = document.createElement("div");
+    commentBox.classList.add("d-flex", "flex-column", "justify-content-center");
+    const commentHeader = document.createElement("h4");
+    commentHeader.classList.add("text-center", "m-auto", "w-100");
+    commentHeader.innerText = "Comments";
+    const commentList = document.createElement("ul");
+    commentList.classList.add("list-group", "d-flex");
+    commentList.id = "commentList";
+    post.comments.forEach((comment) => {
+      const commentItem = document.createElement("li");
+      commentItem.classList.add("list-group-item");
+      commentItem.innerText = comment.body;
+      const commentAuthor = document.createElement("p");
+      const creationDate = formatDate(comment.created);
+      commentAuthor.classList.add("text-muted", "mb-0");
+      commentAuthor.innerText = `Posted by ${comment.author.name} on ${creationDate}`;
+      commentItem.appendChild(commentAuthor);
+      commentList.appendChild(commentItem);
+    });
+    commentList.prepend(commentHeader);
+    feedContainer.append(commentList);
+    feedContainer.append(commentBox);
+  }
 }
 
 /**
@@ -313,6 +404,7 @@ export async function buildFeed(filteredData) {
  */
 export async function buildUserFeed(user) {
   const userPostData = await fetchUsersPosts(user);
+
   createPosts(userPostData);
 }
 
@@ -337,10 +429,9 @@ export async function buildSinglePost() {
   const queryString = document.location.search;
   const params = new URLSearchParams(queryString);
   const searchId = params.get("id");
-  console.log(searchId);
 
   const postById = await apiFetch(
-    `${baseUrl}/posts/${searchId}${authorInclude}`,
+    `${baseUrl}/posts/${searchId}${authorInclude}&_comments=true&_reactions=true`,
     "get"
   );
 
