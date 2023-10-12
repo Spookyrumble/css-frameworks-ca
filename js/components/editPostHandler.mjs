@@ -81,7 +81,6 @@ export function showModal(id, title, body, media) {
 
   const cancelBtn = document.createElement("button");
   cancelBtn.classList.add("btn", "btn-primary");
-  //   cancelBtn.id = "closeModal";
   cancelBtn.innerText = "Cancel";
   btnBox.append(cancelBtn);
 

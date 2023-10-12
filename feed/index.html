@@ -56,16 +56,6 @@
                 >
               </li>
             </ul>
-            <!-- <form class="form d-flex my-2 my-lg-0">
-              <input
-                class="form-control mr-sm-2"
-                type="text"
-                placeholder="Search"
-              />
-              <button class="btn btn-light m-2 my-sm-0" type="submit">
-                Search
-              </button>
-            </form> -->
           </div>
         </nav>
       </div>
@@ -74,40 +64,7 @@
       <h1 class="text-center">Connotation</h1>
       <div class="container-xl p-5">
         <div class="row">
-          <div class="col-lg-6 mb-5 shadow p-2">
-            <h4>Friends</h4>
-            <a href="#"
-              ><div class="col-4 p-1 d-flex w-100">
-                <img
-                  class="customThumbnail"
-                  src="/images/profilePics/lesly-juarez-RukI4qZGlQs-unsplash_alex.jpg"
-                  alt="alex's profile picture"
-                />
-                <p class="p-2">Some post they made about something</p>
-              </div></a
-            >
-            <a href="#"
-              ><div class="col-4 p-1 d-flex w-100">
-                <img
-                  class="customThumbnail"
-                  src="/images/profilePics/ben-o-bro-C5XyLljkMrY-unsplash_fred.jpg"
-                  alt="fred's profile picture"
-                />
-                <p class="p-2">Some post they made about something</p>
-              </div></a
-            >
-            <a href="#"
-              ><div class="col-4 p-1 d-flex w-100">
-                <img
-                  class="customThumbnail"
-                  src="/images/profilePics/michael-dam-mEZ3PoFGs_k-unsplash_may.jpg"
-                  alt="may's profile picture"
-                />
-                <p class="p-2">Some post they made about something</p>
-              </div></a
-            >
-          </div>
-          <div class="col-lg-6 shadow mb-5 p-2">
+          <div class="col-lg-6 shadow mb-5 p-2 m-auto">
             <form id="createForm">
               <h4 class="text-center p-2">Create post</h4>
               <label for="title">Title</label>
@@ -142,19 +99,25 @@
           </div>
           <form class="form-group text-end my-5">
             <h4 class="text-center">Feed</h4>
-            <label for="sortBy">Filter by</label>
-            <select class="form-control-sm" id="sortBy">
-              <option>Newest</option>
-              <option>Oldest</option>
-              <option>Friends</option>
-            </select>
-            <label class="ms-2" for="search">Search Feed</label>
-            <input
-              class="border-solid"
-              type="text"
-              id="search"
-              placeholder="Users & Titles"
-            />
+            <div class="d-flex flex-wrap justify-content-end">
+              <div>
+                <label for="sortBy">Filter by</label>
+                <select class="form-control-sm" id="sortBy">
+                  <option>Newest</option>
+                  <option>Oldest</option>
+                  <option>Friends</option>
+                </select>
+              </div>
+              <div>
+                <label class="ms-2" for="search">Search Feed</label>
+                <input
+                  class="border-solid"
+                  type="text"
+                  id="search"
+                  placeholder="Users & Titles"
+                />
+              </div>
+            </div>
           </form>
           <span class="loader"></span>
           <div id="feedContainer" class="col-lg-12 shadow p-2"></div>
