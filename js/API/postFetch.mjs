@@ -8,7 +8,7 @@ import { apiFetch } from "../utils.js";
 export async function postFetch() {
   try {
     const postArray = await apiFetch(
-      `${baseUrl}${postUrl}${authorInclude}&comment=true&reaction=true`,
+      `${baseUrl}${postUrl}${authorInclude}&_comments=true&_reactions=true`,
       "GET"
     );
     return postArray;

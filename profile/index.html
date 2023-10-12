@@ -61,6 +61,19 @@
           </div>
           <p class="p-sm-2">This would be a profile bio!</p>
         </div>
+        <div class="d-flex justify-content-end m-3">
+          <button id="editProfile" class="btn btn-secondary d-none" >Edit user media</button>
+        </div>
+        <form class="form-group d-flex flex-column d-none" id="editContainer">
+          <label for="avatar">Change Avatar URL</label>
+          <input type="text" name="avatar" id="avatar">
+          <label for="banner">Change Banner URL</label>
+          <input type="text" name="banner" id="banner">
+          <div class="d-flex justify-content-end gap-2 m-3">
+            <button id="saveBtn" class="btn btn-success">Save</button>
+            <button id="cancelBtn" class="btn btn-secondary">Cancel</button>
+          </div>
+        </form>
         <div class="row text-center border-top border-secondary p-1">
           <div class="col-4">
             <p>Posts</p>

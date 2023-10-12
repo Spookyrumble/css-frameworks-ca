@@ -7,6 +7,7 @@ import { deletePost } from "./deleteHandler.mjs";
 import { showModal } from "./editPostHandler.mjs";
 import { formatDate } from "../utils.js";
 import { postComment } from "../API/postComment.mjs";
+import { postLikeReaction } from "../API/postReaction.mjs";
 
 const userId = localStorage.getItem("userId");
 let followingData = null;
@@ -120,7 +121,7 @@ function createPost(post) {
     "p-2",
     "m-auto",
     "my-5",
-    "border-top"
+    "border"
   );
 
   const nameContainer = document.createElement("div");
@@ -229,9 +230,34 @@ function createPost(post) {
   bodyText.classList.add("text-break");
   bodyText.innerText = post.body;
 
+  if (!post.media == null || !post.media == "") {
+    const mediaBox = document.createElement("div");
+    mediaBox.classList.add("col-12", "col-md-6", "col-lg-4", "mb-3");
+    const media = document.createElement("img");
+    media.classList.add("img-fluid");
+    media.src = post.media;
+    media.alt = "post image";
+    mediaBox.appendChild(media);
+    feedBox.appendChild(mediaBox);
+  }
+
+  const buttonBox = document.createElement("div");
+  buttonBox.classList.add(
+    "d-flex",
+    "flex-wrap",
+    "justify-content-between",
+    "w-100"
+  );
+
   const commentButton = document.createElement("button");
   commentButton.innerText = "Add Comment";
   commentButton.classList.add("btn", "btn-primary", "mt-2", "col-4");
+  buttonBox.appendChild(commentButton);
+
+  const likeButton = document.createElement("button");
+  likeButton.innerText = "Like";
+  likeButton.classList.add("btn", "btn-primary", "mt-2", "col-2");
+  buttonBox.appendChild(likeButton);
 
   const commentInput = document.createElement("textarea");
   commentInput.classList.add("form-control", "mt-2");
@@ -258,22 +284,20 @@ function createPost(post) {
     if (commentInput.style.display === "none") {
       commentInput.style.display = "block";
       sendButton.style.display = "block";
+      commentButton.innerText = "Close Comment";
     } else {
       commentInput.style.display = "none";
       sendButton.style.display = "none";
+      commentButton.innerText = "Add Comment";
     }
   });
 
-  if (!post.media == null || !post.media == "") {
-    const mediaBox = document.createElement("div");
-    mediaBox.classList.add("col-12", "col-md-6", "col-lg-4", "mb-3");
-    const media = document.createElement("img");
-    media.classList.add("img-fluid");
-    media.src = post.media;
-    media.alt = "post image";
-    mediaBox.appendChild(media);
-    feedBox.appendChild(mediaBox);
-  }
+  likeButton.addEventListener("click", async () => {
+    postLikeReaction(post.id);
+    likeButton.innerText = "Liked";
+    likeButton.classList.remove("btn-primary");
+    likeButton.classList.add("btn-success");
+  });
 
   const commentReactionBox = document.createElement("a");
   commentReactionBox.href = `/profile/index.html?id=${post.id}`;
@@ -303,22 +327,22 @@ function createPost(post) {
   bodyBox.appendChild(bodyText);
   feedContainer.appendChild(feedBox);
   feedBox.append(commentReactionBox);
-  feedBox.append(commentButton);
+  feedBox.append(buttonBox);
   feedBox.append(commentInput);
   feedBox.append(sendButton);
 
-  if (post.comments) {
+  if (!post.comments.length == 0) {
     const commentBox = document.createElement("div");
     commentBox.classList.add("d-flex", "flex-column", "justify-content-center");
     const commentHeader = document.createElement("h4");
-    commentHeader.classList.add("text-center", "m-auto", "w-100");
+    commentHeader.classList.add("text-left", "m-auto", "w-100", "fs-6", "mt-4");
     commentHeader.innerText = "Comments";
     const commentList = document.createElement("ul");
-    commentList.classList.add("list-group", "d-flex");
+    commentList.classList.add("p-3", "list-group", "d-flex");
     commentList.id = "commentList";
     post.comments.forEach((comment) => {
       const commentItem = document.createElement("li");
-      commentItem.classList.add("list-group-item");
+      commentItem.classList.add("list-group-item", "text-break");
       commentItem.innerText = comment.body;
       const commentAuthor = document.createElement("p");
       const creationDate = formatDate(comment.created);
@@ -326,10 +350,10 @@ function createPost(post) {
       commentAuthor.innerText = `Posted by ${comment.author.name} on ${creationDate}`;
       commentItem.appendChild(commentAuthor);
       commentList.appendChild(commentItem);
+      commentBox.prepend(commentHeader);
+      commentBox.append(commentList);
+      feedBox.append(commentBox);
     });
-    commentList.prepend(commentHeader);
-    feedContainer.append(commentList);
-    feedContainer.append(commentBox);
   }
 }
 
