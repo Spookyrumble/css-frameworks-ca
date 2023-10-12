@@ -11970,5 +11970,21 @@ textarea.form-control-lg {
     transform: rotate(360deg);
   }
 }
+.active {
+  background-color: #7e60bf;
+  color: white;
+  border-radius: 50%;
+}
+
+.maxWidth {
+  max-width: 30rem;
+  margin: auto;
+}
+
+button {
+  min-width: 8rem;
+  max-width: 9rem;
+  margin: auto;
+}
 
 /*# sourceMappingURL=index.css.map */
