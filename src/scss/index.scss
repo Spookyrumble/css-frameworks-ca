@@ -94,3 +94,20 @@
     transform: rotate(360deg);
   }
 }
+
+.active {
+  background-color: $secondary;
+  color: white;
+  border-radius: 50%;
+}
+
+.maxWidth {
+  max-width: 30rem;
+  margin: auto;
+}
+
+button {
+  min-width: 8rem;
+  max-width: 9rem;
+  margin: auto;
+}
