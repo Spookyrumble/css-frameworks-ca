@@ -185,6 +185,10 @@ function formListener() {
 }
 formListener();
 
+/**
+ * Checks if the user is logged in by checking if an access token exists in local storage.
+ * If the user is logged in, redirects them to their profile page.
+ */
 function checkIfUserIsLoggedIn() {
   const isUserLoggedIn = localStorage.getItem("accessToken");
   const userName = localStorage.getItem("userId");
