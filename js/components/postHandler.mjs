@@ -198,11 +198,19 @@ function createPost(post) {
     const targetUserName = post.author.name;
     if (spanElement.textContent === "Follow") {
       spanElement.textContent = "Unfollow";
-      await apiFetch(`${baseUrl}/profiles/${post.author.name}/follow`, "put");
+      await apiFetch(
+        `${baseUrl}/profiles/${post.author.name}/follow`,
+        "put",
+        "body"
+      );
       followingData.push({ name: targetUserName });
     } else {
       spanElement.textContent = "Follow";
-      await apiFetch(`${baseUrl}/profiles/${post.author.name}/unfollow`, "put");
+      await apiFetch(
+        `${baseUrl}/profiles/${post.author.name}/unfollow`,
+        "put",
+        "body"
+      );
       followingData = followingData.filter(
         (followingUser) => followingUser.name !== targetUserName
       );
