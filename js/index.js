@@ -1,14 +1,9 @@
 import { apiFetch } from "./API/utils/utils.js";
 import { checkboxValidation } from "./API/utils/utils.js";
-import {
-  linkAuthorizations,
-  navListeners,
-  logoListener,
-} from "./components/navLinks.mjs";
+import { linkAuthorizations, navListeners } from "./components/navLinks.mjs";
 import { baseUrl } from "./API/urls.js";
 
 navListeners();
-// logoListener();
 linkAuthorizations();
 
 // export const API_BASE_URL = "https://api.noroff.dev/api/v1/social/";
@@ -189,3 +184,12 @@ function formListener() {
   });
 }
 formListener();
+
+function checkIfUserIsLoggedIn() {
+  const isUserLoggedIn = localStorage.getItem("accessToken");
+  const userName = localStorage.getItem("userId");
+  if (isUserLoggedIn) {
+    window.location.replace(`/profile/index.html?id=${userName}`);
+  }
+}
+checkIfUserIsLoggedIn();
