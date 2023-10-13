@@ -125,7 +125,12 @@ function createPost(post) {
   );
 
   const nameContainer = document.createElement("div");
-  nameContainer.classList.add("d-flex", "w-100", "justify-content-between");
+  nameContainer.classList.add(
+    "d-flex",
+    "w-100",
+    "justify-content-between",
+    "flex-wrap"
+  );
 
   const profileContainer = document.createElement("div");
   profileContainer.classList.add("d-flex");
