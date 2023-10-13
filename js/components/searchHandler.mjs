@@ -23,7 +23,7 @@ export async function performSearch(searchTerm) {
 
   // Filter based on the search term
   const filteredPosts = allPosts.filter((post) => {
-    const titleMatch = post.title.toLowerCase().startsWith(searchTerm);
+    const titleMatch = post.title.toLowerCase().includes(searchTerm);
     const authorMatch = post.author.name.toLowerCase().startsWith(searchTerm);
     return titleMatch || authorMatch;
   });
