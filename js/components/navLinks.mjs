@@ -1,4 +1,4 @@
-import { logOut } from "../utils.js";
+import { logOut } from "../API/utils/utils.js";
 
 const logoLink = document.getElementById("logoLink");
 const profileLink = document.getElementById("profileNavLink");

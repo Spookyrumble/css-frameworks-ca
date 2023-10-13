@@ -1,11 +1,11 @@
 import { postFetch } from "../API/postFetch.mjs";
-import { apiFetch } from "../utils.js";
+import { apiFetch } from "../API/utils/utils.js";
 import { fetchUsersPosts } from "../API/userPostFetch.mjs";
 import { authorInclude, baseUrl, profileUrl } from "../API/urls.js";
 import { loadProfile } from "./profileHandler.mjs";
 import { deletePost } from "./deleteHandler.mjs";
 import { showModal } from "./editPostHandler.mjs";
-import { formatDate } from "../utils.js";
+import { formatDate } from "../API/utils/utils.js";
 import { postComment } from "../API/postComment.mjs";
 import { postLikeReaction } from "../API/postReaction.mjs";
 
@@ -121,7 +121,8 @@ function createPost(post) {
     "p-2",
     "m-auto",
     "my-5",
-    "border"
+    "border",
+    "shadow"
   );
 
   const nameContainer = document.createElement("div");
@@ -152,18 +153,13 @@ function createPost(post) {
   }
 
   const nameLink = document.createElement("a");
-  nameLink.href = `/profile/index.html?id=${post.author.name}`; // remember to correct this
+  nameLink.href = `/profile/index.html?id=${post.author.name}`;
   const nameBox = document.createElement("p");
   nameBox.classList.add("mx-2", "text-dark", "fs-4");
   nameBox.innerText = post.author.name;
 
   const followUnfollowBox = document.createElement("div");
-  followUnfollowBox.classList.add(
-    "d-flex",
-    "flex-column",
-    "border-top",
-    "text-end"
-  );
+  followUnfollowBox.classList.add("d-flex", "gap-3", "text-end");
   const followUnfollowLink = document.createElement("a");
   followUnfollowLink.classList.add("clickableLink");
   const smallElement = document.createElement("small");
@@ -202,19 +198,11 @@ function createPost(post) {
     const targetUserName = post.author.name;
     if (spanElement.textContent === "Follow") {
       spanElement.textContent = "Unfollow";
-      await apiFetch(
-        `${baseUrl}/profiles/${post.author.name}/follow`,
-        "put",
-        "body"
-      );
+      await apiFetch(`${baseUrl}/profiles/${post.author.name}/follow`, "put");
       followingData.push({ name: targetUserName });
     } else {
       spanElement.textContent = "Follow";
-      await apiFetch(
-        `${baseUrl}/profiles/${post.author.name}/unfollow`,
-        "put",
-        "body"
-      );
+      await apiFetch(`${baseUrl}/profiles/${post.author.name}/unfollow`, "put");
       followingData = followingData.filter(
         (followingUser) => followingUser.name !== targetUserName
       );
@@ -237,7 +225,14 @@ function createPost(post) {
 
   if (!post.media == null || !post.media == "") {
     const mediaBox = document.createElement("div");
-    mediaBox.classList.add("col-12", "col-md-6", "col-lg-4", "mb-3");
+    mediaBox.classList.add(
+      "col-12",
+      "col-md-6",
+      "col-lg-4",
+      "mb-3",
+      "d-flex",
+      "m-auto"
+    );
     const media = document.createElement("img");
     media.classList.add("img-fluid");
     media.src = post.media;

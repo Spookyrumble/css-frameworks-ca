@@ -1,5 +1,5 @@
 import { baseUrl, postUrl, authorInclude } from "../API/urls.js";
-import { apiFetch } from "../utils.js";
+import { apiFetch } from "./utils/utils.js";
 
 /**
  * Fetches all posts from the API with author info included (default 100 posts)

@@ -33,7 +33,9 @@ import { updateUserMedia } from "../API/updateProfileMedia.mjs";
  */
 export function populateProfile(user) {
   const userBanner = document.getElementById("dynamicProfileTitle");
+  const userFeedTitle = document.getElementById("dynamicFeedTitle");
   userBanner.innerText = `${user.name}'s profile page`;
+  userFeedTitle.innerText = `${user.name}'s posts`;
 
   if (user.banner && user.banner.trim() !== "") {
     userBanner.classList.add("p-5", "my-1", "text-shadow-white");

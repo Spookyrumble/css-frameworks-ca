@@ -1,5 +1,5 @@
-import { apiFetch } from "./utils.js";
-import { checkboxValidation } from "./utils.js";
+import { apiFetch } from "./API/utils/utils.js";
+import { checkboxValidation } from "./API/utils/utils.js";
 import {
   linkAuthorizations,
   navListeners,

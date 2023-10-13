@@ -1,5 +1,5 @@
 import { baseUrl, profileUrl } from "../API/urls.js";
-import { apiFetch } from "../utils.js";
+import { apiFetch } from "./utils/utils.js";
 
 /**
  * Fetches the user profile data from the API.

@@ -1,4 +1,4 @@
-import { apiFetch } from "../utils.js";
+import { apiFetch } from "./utils/utils.js";
 import { baseUrl, postUrl } from "../API/urls.js";
 
 export async function postComment(postId, comment) {

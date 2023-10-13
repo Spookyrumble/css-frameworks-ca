@@ -1,5 +1,5 @@
 import { baseUrl, profileUrl, postUrl } from "../API/urls.js";
-import { apiFetch } from "../utils.js";
+import { apiFetch } from "./utils/utils.js";
 
 /**
  * Fetches the posts of a specific user from the API.

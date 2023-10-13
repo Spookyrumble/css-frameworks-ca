@@ -1,4 +1,4 @@
-import { apiFetch } from "../utils.js";
+import { apiFetch } from "./utils/utils.js";
 import { baseUrl, profileUrl } from "./urls.js";
 
 export async function updateUserMedia(userId, object) {
