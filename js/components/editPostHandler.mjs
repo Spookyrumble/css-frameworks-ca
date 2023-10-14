@@ -75,7 +75,8 @@ export function showModal(id, title, body, media) {
     if (updatePost) {
       setTimeout(function () {
         hideModal();
-      }, 400);
+        location.reload();
+      }, 1000);
     } else console.log("Error updating post");
   });
 
@@ -158,7 +159,6 @@ async function updatePost(form, postId) {
       post
     );
     if (response) {
-      console.log("Post updated:", response);
       return true;
     }
   } catch (error) {

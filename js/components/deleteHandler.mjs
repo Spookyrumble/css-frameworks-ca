@@ -21,14 +21,17 @@ import { baseUrl, postUrl } from "../API/urls.js";
  *     console.log("Post deletion was cancelled.");
  * }
  */
-export function deletePost(postId) {
+export async function deletePost(postId) {
   const userPrompt = window.confirm(
     "Are you sure you want to delete this post? This action can not be undone."
   );
   if (userPrompt === true) {
     try {
-      const response = apiFetch(`${baseUrl}${postUrl}/${postId}`, "DELETE");
-      console.log("Post deleted:", response);
+      const response = await apiFetch(
+        `${baseUrl}${postUrl}/${postId}`,
+        "DELETE"
+      );
+      alert(`Post ${response} has been deleted`);
       return true;
     } catch (error) {
       console.error("Error deleting post:", error);

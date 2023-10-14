@@ -63,7 +63,6 @@ export async function feedFilter() {
           break;
         case "Friends":
           const friendNames = posts.following.map((friend) => friend.name);
-          console.log(friendNames);
           sortedArray = allPosts.filter((post) =>
             friendNames.includes(post.author.name)
           );

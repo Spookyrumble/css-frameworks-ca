@@ -286,6 +286,9 @@ function createPost(post) {
     sendButton.style.display = "none";
     commentInput.style.display = "none";
     commentInput.value = "";
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   });
 
   commentButton.addEventListener("click", () => {
@@ -339,7 +342,7 @@ function createPost(post) {
   feedBox.append(commentInput);
   feedBox.append(sendButton);
 
-  if (!post.comments.length == 0) {
+  if (post.comments.length > 0) {
     const commentBox = document.createElement("div");
     commentBox.classList.add("d-flex", "flex-column", "justify-content-center");
     const commentHeader = document.createElement("h4");
@@ -348,7 +351,10 @@ function createPost(post) {
     const commentList = document.createElement("ul");
     commentList.classList.add("p-3", "list-group", "d-flex");
     commentList.id = "commentList";
-    post.comments.forEach((comment) => {
+    const maxComments = 4;
+    const comments = post.comments.slice(0, maxComments);
+
+    comments.forEach((comment) => {
       const commentItem = document.createElement("li");
       commentItem.classList.add("list-group-item", "text-break");
       commentItem.innerText = comment.body;
@@ -362,6 +368,33 @@ function createPost(post) {
       commentBox.append(commentList);
       feedBox.append(commentBox);
     });
+
+    if (post.comments.length > 4) {
+      const showMoreComments = document.createElement("a");
+      showMoreComments.classList.add(
+        "text-muted",
+        "text-decoration-none",
+        "clickableLink"
+      );
+      showMoreComments.innerText = "Show more comments..";
+      showMoreComments.addEventListener("click", (e) => {
+        e.preventDefault();
+        const remainingComments = post.comments.slice(maxComments);
+        remainingComments.forEach((comment) => {
+          const commentItem = document.createElement("li");
+          commentItem.classList.add("list-group-item", "text-break");
+          commentItem.innerText = comment.body;
+          const commentAuthor = document.createElement("p");
+          const creationDate = formatDate(comment.created);
+          commentAuthor.classList.add("text-muted", "mb-0");
+          commentAuthor.innerText = `Posted by ${comment.author.name} on ${creationDate}`;
+          commentItem.appendChild(commentAuthor);
+          commentList.appendChild(commentItem);
+        });
+        showMoreComments.style.display = "none";
+      });
+      commentBox.append(showMoreComments);
+    }
   }
 }
 

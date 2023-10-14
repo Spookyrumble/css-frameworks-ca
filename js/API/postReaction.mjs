@@ -18,7 +18,6 @@ export async function postLikeReaction(postId) {
         authorization: `Bearer ${token}`,
       },
     });
-    console.log(response);
 
     return response;
   } catch (error) {

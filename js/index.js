@@ -57,8 +57,6 @@ async function createNewUser() {
     password: userPassword,
   };
 
-  console.log(userObject);
-
   try {
     const response = await fetch(`${baseUrl}/${authString}/${registerString}`, {
       method: "POST",
@@ -69,7 +67,7 @@ async function createNewUser() {
     });
 
     const json = await response.json();
-    console.log(json);
+    alert("User created successfully. Welcome to the community!");
   } catch (error) {
     console.log(error);
   }
