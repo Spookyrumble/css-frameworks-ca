@@ -12,6 +12,9 @@ This project is an extension of a Bootstrap assignment where we have integrated 
 - SASS
 - JavaScript
 
+- Images from Noroff API and unsplash.com
+- Icons from iconify
+
 ---
 
 ## Getting Started
