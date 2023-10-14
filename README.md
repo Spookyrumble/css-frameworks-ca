@@ -1,29 +1,25 @@
-# CSS Frameworks
+# CSS Frameworks with JavaScript Integration
 
 ---
 
 ## Description
 
-Bootstrap assignment.
-First exposure to bootstrap. We were to build 3 pages for a social media website mainly using bootstrap but to also do some overrides with SASS.
+This project is an extension of a Bootstrap assignment where we have integrated JavaScript to enhance the functionality of a social media website. The original assignment primarily utilized Bootstrap, and we have extended it by incorporating JavaScript features.
 
 ## Built with
 
-Bootstrap and SASS
+- Bootstrap
+- SASS
+- JavaScript
 
 ---
 
-## Getting started
+## Getting Started
 
-This is a school assignment.
+To get started with this project, follow these steps:
 
----
+1. **Clone the Repository**: You can clone this repository to your local machine using the following command:
 
-## Contact
-
-If you want to get in contact with me you can use either of the following:
-
-- mailspooky@yahoo.com
-- [Twitter](https://twitter.com/HansMarAnd)
-- [LinkedIn](https://www.linkedin.com/in/hma1982/)
-- [Github](https://github.com/Spookyrumble)
+   ```bash
+   git clone https://github.com/Spookyrumble/css-frameworks-ca.git
+   ```
