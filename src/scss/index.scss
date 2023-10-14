@@ -96,9 +96,10 @@
 }
 
 .active {
-  background-color: $secondary;
+  background-color: $dark;
   color: white;
   border-radius: 50%;
+  text-decoration: underline;
 }
 
 .maxWidth {

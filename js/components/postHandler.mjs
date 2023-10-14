@@ -269,6 +269,7 @@ function createPost(post) {
 
   const commentInput = document.createElement("textarea");
   commentInput.classList.add("form-control", "mt-2");
+  commentInput.setAttribute("aria-label", "comment textarea");
   commentInput.placeholder = "Write your comment here...";
   commentInput.setAttribute("name", "body");
   commentInput.style.display = "none";
@@ -372,7 +373,8 @@ function createPost(post) {
     if (post.comments.length > 4) {
       const showMoreComments = document.createElement("a");
       showMoreComments.classList.add(
-        "text-muted",
+        "text-weak",
+        "fs-6",
         "text-decoration-none",
         "clickableLink"
       );

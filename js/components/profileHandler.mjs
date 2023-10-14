@@ -73,8 +73,6 @@ export function populateProfile(user) {
 
     saveBtn.addEventListener("click", async function (e) {
       e.preventDefault();
-      // https://spookyrumble-portfolio.netlify.app/images/avatar_sefie.png
-      // https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80
 
       let newProfileMedia = {};
 
@@ -98,8 +96,10 @@ export function populateProfile(user) {
   const userAvatar = document.createElement("img");
   if (user.avatar) {
     userAvatar.src = user.avatar;
+    userAvatar.alt = `${user.name}'s avatar`;
   } else {
     userAvatar.src = "https://www.freeiconspng.com/uploads/profile-icon-9.png";
+    userAvatar.alt = "default avatar image";
   }
   userAvatarContainer.appendChild(userAvatar);
 

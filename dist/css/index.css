@@ -11971,9 +11971,10 @@ textarea.form-control-lg {
   }
 }
 .active {
-  background-color: #7e60bf;
+  background-color: #2a2040;
   color: white;
   border-radius: 50%;
+  text-decoration: underline;
 }
 
 .maxWidth {
