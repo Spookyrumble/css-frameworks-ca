@@ -11970,7 +11970,7 @@ textarea.form-control-lg {
   }
 }
 .active {
-  background-color: #2a2040;
+  background: linear-gradient(to left, #2a2040 60%, #7e60bf);
   color: white;
   border-radius: 50%;
   text-decoration: underline;

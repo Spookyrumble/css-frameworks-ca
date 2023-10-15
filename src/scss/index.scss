@@ -95,7 +95,7 @@
 }
 
 .active {
-  background-color: $dark;
+  background: linear-gradient(to left, $dark 60%, $secondary);
   color: white;
   border-radius: 50%;
   text-decoration: underline;
