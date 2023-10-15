@@ -28,3 +28,5 @@ To get started with this project, follow these steps:
    ```bash
    git clone https://github.com/Spookyrumble/css-frameworks-ca.git
    ```
+
+   or clone from Github directly.
