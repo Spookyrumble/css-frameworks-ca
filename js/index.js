@@ -67,7 +67,9 @@ async function createNewUser() {
     });
 
     const json = await response.json();
-    alert("User created successfully. Welcome to the community!");
+    console.log(json);
+
+    window.location.reload();
   } catch (error) {
     console.log(error);
   }
@@ -125,7 +127,6 @@ async function loginUser(url, data) {
       body: JSON.stringify(data),
     };
     const response = await fetch(url, postData);
-    console.log(response);
 
     if (response.ok) {
       const json = await response.json();
