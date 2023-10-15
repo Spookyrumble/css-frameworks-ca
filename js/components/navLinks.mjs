@@ -2,11 +2,11 @@ import { logOut } from "../API/utils/utils.js";
 
 const logoLink = document.getElementById("logoLink");
 const profileLink = document.getElementById("profileNavLink");
-profileLink.style.cursor = "pointer";
+// profileLink.style.cursor = "pointer";
 const feedLink = document.getElementById("feedNavLink");
-feedLink.style.cursor = "pointer";
+// feedLink.style.cursor = "pointer";
 const signOut = document.getElementById("signOut");
-signOut.style.cursor = "pointer";
+// signOut.style.cursor = "pointer";
 const loggedInUser = localStorage.getItem("userId");
 
 /**

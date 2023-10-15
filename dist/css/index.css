@@ -11937,14 +11937,13 @@ textarea.form-control-lg {
 
 .clickableLink {
   cursor: pointer;
-  text-decoration: underline;
   color: #7e60bf;
 }
 
 .loader {
   width: 64px;
   height: 64px;
-  position: relative;
+  position: absolute;
   background-image: linear-gradient(#b2a0d9 16px, transparent 0), linear-gradient(#7e60bf 16px, transparent 0), linear-gradient(#7e60bf 16px, transparent 0), linear-gradient(#b2a0d9 16px, transparent 0);
   background-repeat: no-repeat;
   background-size: 16px 16px;
@@ -11989,6 +11988,10 @@ button {
 
 .spacer {
   margin-top: 8rem;
+}
+
+footer {
+  bottom: 0;
 }
 
 /*# sourceMappingURL=index.css.map */

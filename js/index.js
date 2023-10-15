@@ -1,12 +1,6 @@
-import { apiFetch } from "./API/utils/utils.js";
 import { checkboxValidation } from "./API/utils/utils.js";
-import { linkAuthorizations, navListeners } from "./components/navLinks.mjs";
 import { baseUrl } from "./API/urls.js";
 
-navListeners();
-linkAuthorizations();
-
-// export const API_BASE_URL = "https://api.noroff.dev/api/v1/social/";
 const authString = "auth";
 const registerString = "register";
 const loginString = "login";
@@ -68,8 +62,6 @@ async function createNewUser() {
 
     const json = await response.json();
     console.log(json);
-
-    window.location.reload();
   } catch (error) {
     console.log(error);
   }
@@ -147,14 +139,23 @@ async function loginUser(url, data) {
 checkboxValidation();
 
 /**
- * Attaches an event listener to the login/registration form.
+ * Adds an event listener to a form that handles user authentication.
  *
- * The function checks if the "new user" checkbox is checked on form submission. If it's checked,
- * the function attempts to create a new user. Otherwise, it attempts to log the user in.
+ * When the form is submitted:
+ * - If the "newUserCheckBox" is checked, a new user is created using the createNewUser() function.
+ *   After a short delay (800ms) to allow for user creation, it attempts to log the new user in.
+ *   If login is successful and an access token is found in localStorage, the user is redirected to the feed page.
+ *   If not, an alert notifies the user of an error.
  *
- * After a successful login, the function redirects the user to their profile page. If the login
- * is unsuccessful, the function alerts the user that the credentials are either wrong or that
- * the user does not exist.
+ * - If the "newUserCheckBox" is not checked, it assumes the user is trying to log in.
+ *   It attempts to log the user in. If successful and an access token is found in localStorage,
+ *   the user is redirected to their profile page. If not, an alert notifies the user of an error.
+ *
+ * @function formListener
+ * @requires createNewUser A function that creates a new user.
+ * @requires grabsUserData A function that retrieves user data from the form.
+ * @requires loginUser A function that attempts to log the user in.
+ * @todo Refactor the quick fix for the new user creation redirect.
  */
 function formListener() {
   const newUserToggle = document.getElementById("newUserCheckBox");
@@ -163,20 +164,32 @@ function formListener() {
     e.preventDefault();
     if (newUserToggle.checked) {
       createNewUser();
+      {
+        //THIS WAS A QUICK FIX TO GET THE REDIRECT TO WORK WITH CREATE NEW USER
+        setTimeout(async () => {
+          const user = grabsUserData();
+          console.log(user);
+          const result = await loginUser(
+            `${baseUrl}/${authString}/${loginString}`,
+            user
+          );
+          if (result.success && localStorage.getItem("accessToken")) {
+            window.location.replace(`/feed`);
+          } else {
+            alert("user does not exist or credentials are wrong");
+          }
+        }, 800);
+      }
     } else {
       const user = grabsUserData();
-      console.log(user);
       const result = await loginUser(
         `${baseUrl}/${authString}/${loginString}`,
         user
       );
-      console.log(result);
-
       if (result.success && localStorage.getItem("accessToken")) {
         const userId = localStorage.getItem("userId");
         window.location.replace(`/profile/index.html?id=${userId}`);
       } else {
-        console.log("user does not exist or credentials are wrong");
         alert("user does not exist or credentials are wrong");
       }
     }

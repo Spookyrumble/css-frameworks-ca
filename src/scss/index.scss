@@ -59,14 +59,13 @@
 
 .clickableLink {
   cursor: pointer;
-  text-decoration: underline;
   color: $secondary;
 }
 
 .loader {
   width: 64px;
   height: 64px;
-  position: relative;
+  position: absolute;
   background-image: linear-gradient($primary 16px, transparent 0),
     linear-gradient($secondary 16px, transparent 0),
     linear-gradient($secondary 16px, transparent 0),
@@ -114,4 +113,8 @@ button {
 
 .spacer {
   margin-top: 8rem;
+}
+
+footer {
+  bottom: 0;
 }

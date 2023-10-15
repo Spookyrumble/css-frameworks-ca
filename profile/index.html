@@ -33,13 +33,13 @@
         >
             <ul class="navbar-nav text-center mr-auto">
               <li class="nav-item">
-                <a id="profileNavLink" class="nav-link text-light m-4 active">Profile</a>
+                <a id="profileNavLink" class="nav-link text-light m-4 active clickableLink">Profile</a>
               </li>
               <li class="nav-item">
-                <a id="feedNavLink" class="nav-link text-light m-4" href="../feed/">Feed</a>
+                <a id="feedNavLink" class="nav-link text-light m-4 clickableLink" href="../feed/">Feed</a>
               </li>
               <li class="nav-item">
-                <a id="signOut" class="nav-link text-light m-4">Sign out</a>
+                <a id="signOut" class="nav-link text-light m-4 clickableLink">Sign out</a>
               </li>
             </ul>
           </div>
@@ -57,12 +57,12 @@
           </div>
         </div>
         <div class="col-12">
-          <div id="imageContainer" class="customProfilePicCont d-flex overflow-hidden">
+          <div id="imageContainer"class="customProfilePicCont d-flex overflow-hidden">
           </div>
           <p class="p-sm-2">This would be a profile bio!</p>
         </div>
         <div class="d-flex justify-content-end m-3">
-          <button id="editProfile" class="btn btn-secondary d-none" >Edit user media</button>
+          <button id="editProfile" class="btn btn-primary d-none" >Edit user media</button>
         </div>
         <form class="form-group d-flex flex-column d-none maxWidth" id="editContainer">
           <label for="avatar">Change Avatar URL</label>
@@ -71,7 +71,7 @@
           <input type="text" name="banner" id="banner">
           <div class="d-flex justify-content-between gap-2 m-3">
             <button id="saveBtn" class="btn btn-success">Save</button>
-            <button id="cancelBtn" class="btn btn-secondary">Cancel</button>
+            <button id="cancelBtn" class="btn btn-primary">Cancel</button>
           </div>
         </form>
         <div class="row text-center border-top border-secondary p-1">
@@ -96,10 +96,9 @@
       </div>
       <div class="container">
         <h3 id="dynamicFeedTitle" class="text-center mt-5 p-1">Recent posts</h3>
-        <span class="loader"></span>
-        <div id="feedContainer" class="row border-bottom p-2 m-auto"></div>
+        <div id="feedContainer" class="row p-2 m-auto"></div>
     </main>
-    <footer>
+    <footer class="spacer">
       <p class="text-dark text-center">
         &copy Spookyrumble - All rights reserved
       </p>
