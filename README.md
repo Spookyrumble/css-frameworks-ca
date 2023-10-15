@@ -12,7 +12,7 @@ This project is an extension of a Bootstrap assignment where we have integrated 
 - SASS
 - JavaScript
 - Figma
-- Trello for planning
+- Trello for planning: [Link to Trello board](https://trello.com/invite/b/4ELnk3WA/ATTI6d235e770fc4e6c4fe704988aca295a4E57B6EF9/js2)
 
 - Images from Noroff API and unsplash.com
 - Icons from iconify
