@@ -7,58 +7,21 @@
     <title>Connotation Social Media</title>
     <link rel="stylesheet" href="dist/css/index.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js" type="module"></script>
   </head>
   <body>
     <header>
       <div class="bs-component mb-5">
-        <nav class="navbar navbar-expand-lg navbar bgGradient">
-          <a class="navbar-brand text-light m-2" href="/index.html"
-            ><img
-              class="logoSizing"
-              src="images/logo/logo_dark.png"
-              alt="connotation logo"
-          /></a>
-          <button
-            class="navbar-toggler collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#burgerMenu"
-            aria-controls="burgerMenu"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            class="collapse navbar-collapse justify-content-between m-2"
-            id="burgerMenu"
-          >
-            <ul class="navbar-nav text-center mr-auto">
-              <li class="nav-item">
-                <a class="nav-link text-light" href="/index.html">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="/feed/index.html">Feed</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="../index.html">Sign out</a>
-              </li>
-            </ul>
-            <form class="form d-flex my-2 my-lg-0 d-none">
-              <input
-                class="form-control mr-sm-2"
-                type="text"
-                placeholder="Search"
-              />
-              <button class="btn btn-light m-2 my-sm-0" type="submit">
-                Search
-              </button>
-            </form>
-          </div>
+        <nav class="navbar navbar-expand-lg navbar bgGradient fixed-top">
+          <img
+            class="logoSizing"
+            src="images/logo/logo_dark.png"
+            alt="connotation logo"
+          />
         </nav>
       </div>
     </header>
-    <main class="container-sm-0">
+    <main class="container-sm-0 spacer">
       <div>
         <h1 class="text-center">Welcome to Connotation</h1>
         <div class="row justify-content-center m-auto w-50">
@@ -70,8 +33,8 @@
         </div>
       </div>
       <div class="row justify-content-center my-5">
-        <div class="col-8 bg-light p-3 shadow">
-          <form action="/profile/index.html">
+        <div class="col-sm-6 bg-light p-3 shadow">
+          <form id="loginForm">
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
               <input
@@ -80,10 +43,9 @@
                 id="email"
                 aria-describedby="emailHelp"
                 required
+                autocomplete
               />
-              <div id="emailHelp" class="form-text">
-                We'll never share your email with anyone else.
-              </div>
+              <div id="emailHelp" class="form-text">Noroff email required.</div>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
@@ -100,16 +62,25 @@
               <input
                 type="checkbox"
                 class="form-check-input"
-                id="rememberCheckBox"
+                id="newUserCheckBox"
               />
-              <label class="form-check-label" for="rememberCheckBox"
-                >Remember me</label
+              <label class="form-check-label" for="newUserCheckBox"
+                >New user</label
               >
             </div>
+            <div id="newUserInput" class="mb-3 d-none">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input
+                type="name"
+                class="form-control"
+                id="fullName"
+                minlength="4"
+              />
+              <div id="emailHelp" class="form-text">Minimum length 4</div>
+            </div>
             <div class="d-flex justify-content-between mx-sm-5">
-              <button type="submit" class="btn btn-primary px-4">Login</button>
-              <button type="submit" class="btn btn-primary" disabled>
-                Register
+              <button id="loginBtn" type="submit" class="btn btn-primary px-4">
+                Login
               </button>
             </div>
           </form>
